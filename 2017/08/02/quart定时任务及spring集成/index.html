@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="quartz," />
 
 
 
@@ -87,19 +87,20 @@
 
 
 
-<meta name="description" content="简介 Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了作业和触发器的多对多的关系，还能把多个作业与不同的触发器关联  ##使用1.引入依赖jar包&amp;lt;dependency&amp;gt;       &amp;lt;groupId&amp;gt;org.quartz-scheduler&amp;lt;/g">
+<meta name="description" content="简介 Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了作业和触发器的多对多的关系，还能把多个作业与不同的触发器关联  ##核心概念 ####架构图 ####核心词  Job ：任务 它是一个接口，只有一个方法void execute(JobExecutionContext co">
+<meta name="keywords" content="quartz">
 <meta property="og:type" content="article">
-<meta property="og:title" content="quart定时任务及spring集成">
+<meta property="og:title" content="quartz定时任务基础概念及使用">
 <meta property="og:url" content="http://lilixin.top/2017/08/02/quart定时任务及spring集成/index.html">
 <meta property="og:site_name" content="轻舞飞扬">
-<meta property="og:description" content="简介 Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了作业和触发器的多对多的关系，还能把多个作业与不同的触发器关联  ##使用1.引入依赖jar包&amp;lt;dependency&amp;gt;       &amp;lt;groupId&amp;gt;org.quartz-scheduler&amp;lt;/g">
+<meta property="og:description" content="简介 Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了作业和触发器的多对多的关系，还能把多个作业与不同的触发器关联  ##核心概念 ####架构图 ####核心词  Job ：任务 它是一个接口，只有一个方法void execute(JobExecutionContext co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/eaf5d65278ec204e3bfa84f4f5bcccc2.png">
-<meta property="og:updated_time" content="2017-08-02T10:49:41.000Z">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/f651228241775a70872596ea21f936ae.jpg">
+<meta property="og:updated_time" content="2017-08-03T04:49:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="quart定时任务及spring集成">
-<meta name="twitter:description" content="简介 Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了作业和触发器的多对多的关系，还能把多个作业与不同的触发器关联  ##使用1.引入依赖jar包&amp;lt;dependency&amp;gt;       &amp;lt;groupId&amp;gt;org.quartz-scheduler&amp;lt;/g">
-<meta name="twitter:image" content="http://ou1kontjz.bkt.clouddn.com/eaf5d65278ec204e3bfa84f4f5bcccc2.png">
+<meta name="twitter:title" content="quartz定时任务基础概念及使用">
+<meta name="twitter:description" content="简介 Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了作业和触发器的多对多的关系，还能把多个作业与不同的触发器关联  ##核心概念 ####架构图 ####核心词  Job ：任务 它是一个接口，只有一个方法void execute(JobExecutionContext co">
+<meta name="twitter:image" content="http://ou1kontjz.bkt.clouddn.com/f651228241775a70872596ea21f936ae.jpg">
 
 
 
@@ -133,7 +134,7 @@
 
 
 
-  <title> quart定时任务及spring集成 | 轻舞飞扬 </title>
+  <title> quartz定时任务基础概念及使用 | 轻舞飞扬 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +274,7 @@
             
             
               
-                quart定时任务及spring集成
+                quartz定时任务基础概念及使用
               
             
           </h1>
@@ -327,12 +328,24 @@
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
 <p>Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了<strong>作业</strong>和<strong>触发器</strong>的多对多的关系，还能把多个作业与不同的触发器关联</p>
 </blockquote>
+<p>##核心概念</p>
+<p>####架构图<br><img src="http://ou1kontjz.bkt.clouddn.com/f651228241775a70872596ea21f936ae.jpg" alt=""></p>
+<p>####核心词</p>
+<ol>
+<li><strong>Job</strong> ：任务 它是一个接口，只有一个方法<br>void execute(JobExecutionContext context)<br>开发者实现该接口来定义自己的任务 ，其中JobExecutionContext类提供了调度上下文的各种信息，Job运行时的信息保存在JobDataMap实例中</li>
+<li><strong>JobDetail</strong>：Quartz在每次执行Job时，接受一个Job实现类，JobDetail 描述了Job实现类及其它相关的静态信息，如Job名字、描述、关联监听器等信息</li>
+<li><strong>Trigger</strong>：是一个类，它描述了触发Job执行的时间规则，主要有SimpleTrigger和CronTrigger这两个子类。CronTrigger支持Cron表达式，可以定义出复杂的时间规则</li>
+<li><strong>Calendar</strong>：org.quartz.Calendar和java.util.Calendar不同，它是一些日历特定时间点的集合,一个Trigger可以和多个Calendar关联，以便排除或包含某些时间点。</li>
+<li><strong>Scheduler</strong>：代表一个Quartz的独立运行容器，JobDetail和Trigger可以注册在Scheduler中，拥有各自唯一的组及名称，组及名称是Scheduler查找定位容器中某一对象的依据</li>
+<li><strong>ThreadPool</strong>：Scheduler使用一个线程池作为任务运行的基础设施，任务通过共享线程池中的线程提高运行效率。</li>
+</ol>
+<p>####关系<br>Scheduler把Trigger绑定到某一个JobDetail上，这样当Trigger触发时对应的Job就会执行。<strong>一个Job可以对应多个Trigger，但一个Trigger只能对应一个Job。</strong>可以通过SchedulerFactory创建一个Scheduler，Scheduler里有一个SchedulerContext，它保存着Scheduler上下文件信息，类似与ServletContext，Job和Trigger都可以访问它。SchedulerContext内部有一个Map，以键值对的形式维护着上下文件信息，可以通过Scheduler.getContext()获取SchedulerContext对象</p>
 <p>##使用<br>1.引入依赖jar包<br><code>&lt;dependency&gt;  
     &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;    
     &lt;artifactId&gt;quartz&lt;/artifactId&gt;    
     &lt;version&gt;2.2.3&lt;/version&gt;    
 &lt;/dependency&gt;</code></p>
-<p>2.<br><img src="http://ou1kontjz.bkt.clouddn.com/eaf5d65278ec204e3bfa84f4f5bcccc2.png" alt=""></p>
+<p>2.</p>
 
       
     </div>
@@ -380,6 +393,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/quartz/" rel="tag"># quartz</a>
+          
+        </div>
       
 
       
@@ -478,6 +497,15 @@
 
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
