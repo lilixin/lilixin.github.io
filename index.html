@@ -325,8 +325,42 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">	 * @author lilixin</div><div class="line">	 * @param sendTo</div><div class="line">	 * @param content</div><div class="line">	 * @param subject</div><div class="line">	 * @throws MessagingException</div><div class="line">	 */</div><div class="line">	public static void sendHtmlMail(String sendTo,String content,String subject) throws MessagingException&#123;</div><div class="line">		Properties props = new Properties(); //可以加载一个配置文件</div><div class="line">		// 使用smtp：简单邮件传输协议</div><div class="line">		props.put(&quot;mail.smtp.host&quot;, &quot;smtp.163.com&quot;);//存储发送邮件服务器的信息</div><div class="line">		props.put(&quot;mail.smtp.auth&quot;, &quot;true&quot;);//同时通过验证</div><div class="line"></div><div class="line">		Session session = Session.getInstance(props);//根据属性新建一个邮件会话</div><div class="line"></div><div class="line">		MimeMessage message = new MimeMessage(session);//由邮件会话新建一个消息对象</div><div class="line">		message.setFrom(new InternetAddress(&quot;lilixin0507@163.com&quot;));//设置发件人的地址</div><div class="line">		message.setRecipient(Message.RecipientType.TO, new InternetAddress(sendTo));//设置收件人,并设置其接收类型为TO</div><div class="line">		message.setSubject(subject);//设置标题</div><div class="line">		//设置信件内容</div><div class="line">		message.setContent(content, &quot;text/html;charset=gbk&quot;); //发送HTML邮件，内容样式比较丰富</div><div class="line">		message.setSentDate(new Date());//设置发信时间</div><div class="line">		message.saveChanges();//存储邮件信息</div><div class="line"></div><div class="line">		//发送邮件</div><div class="line">        Transport transport = session.getTransport(&quot;smtp&quot;);</div><div class="line">		transport.connect(&quot;lilixin0507@163.com&quot;, &quot;mypassword&quot;);</div><div class="line">		transport.sendMessage(message, message.getAllRecipients());//发送邮件,其中第二个参数是所有已设好的收件人地址</div><div class="line">		transport.close();</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args)&#123;</div><div class="line">	    try &#123;</div><div class="line">            SpringMailSender.sendHtmlMail(&quot;lilixin0507@163.com&quot;, &quot;this is a ttt mail&quot;, &quot;这是我的一封邮件&quot;);</div><div class="line">        &#125; catch (MessagingException e) &#123;</div><div class="line">            // TODO Auto-generated catch block</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+            <p>#使用javax.mail包发送邮件</p>
+<p>###注意别引错包<br>有的jar没有包含sun的实现，只包含了api，这类jar名称通常为javax.mail-api-x.x.x.jar 在使用smtp协议发邮件过程中会报错：<figure class="highlight plain"><figcaption><span>com.sun.mail.util.MailLogger  ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">另一种jar是包含了sun的实现的，名称通常为javax.mail-x.x.x.jar，使用smtp协议发邮件正常！</div><div class="line"></div><div class="line">#示例代码</div></pre></td></tr></table></figure></p>
+<p>import javax.mail.Message;<br>import javax.mail.Session;<br>import javax.mail.Transport;<br>import javax.mail.internet.InternetAddress;<br>import javax.mail.internet.MimeMessage;<br>import java.util.Date;<br>import java.util.Properties;</p>
+<p>/**</p>
+<pre><code> * @author lilixin
+ * @param sendTo
+ * @param content
+ * @param subject
+ * @throws MessagingException
+ */
+public static void sendHtmlMail(String sendTo,String content,String subject) throws MessagingException{
+    Properties props = new Properties(); //可以加载一个配置文件
+    // 使用smtp：简单邮件传输协议
+    props.put(&quot;mail.smtp.host&quot;, &quot;smtp.163.com&quot;);//存储发送邮件服务器的信息
+    props.put(&quot;mail.smtp.auth&quot;, &quot;true&quot;);//同时通过验证
+
+    Session session = Session.getInstance(props);//根据属性新建一个邮件会话
+
+    MimeMessage message = new MimeMessage(session);//由邮件会话新建一个消息对象
+    message.setFrom(new InternetAddress(&quot;lilixin0507@163.com&quot;));//设置发件人的地址
+    message.setRecipient(Message.RecipientType.TO, new InternetAddress(sendTo));//设置收件人,并设置其接收类型为TO
+    message.setSubject(subject);//设置标题
+    //设置信件内容
+    message.setContent(content, &quot;text/html;charset=gbk&quot;); //发送HTML邮件，内容样式比较丰富
+    message.setSentDate(new Date());//设置发信时间
+    message.saveChanges();//存储邮件信息
+
+    //发送邮件
+    Transport transport = session.getTransport(&quot;smtp&quot;);
+    transport.connect(&quot;lilixin0507@163.com&quot;, &quot;mypassword&quot;);
+    transport.sendMessage(message, message.getAllRecipients());//发送邮件,其中第二个参数是所有已设好的收件人地址
+    transport.close();
+}    
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>public static void main(String[] args){<br>        try {<br>            sendHtmlMail(“lilixin0507@163.com”, “this is a ttt mail”, “这是我的一封邮件”);<br>        } catch (MessagingException e) {<br>            // TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>    }<br>```</p>
+
           
         
       
