@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="#创建版本库  把当前目录初始化为git版本仓库  $ git init #查看当前仓库状态    $ git status #查看某一文件不同    $ git diff #查看工作区和版本库的区别    $ git diff HEAD – 文件名 #添加文件到仓库    $ git add  #提交文件到仓库    $ git commit -m ‘this is comment’ #查看历史">
+<meta name="description" content="#创建版本库  把当前目录初始化为git版本仓库  $ git init #查看当前仓库状态 $ git status #查看某一文件不同 $ git diff #查看工作区和版本库的区别 $ git diff HEAD -- 文件名 #添加文件到仓库 $ git add  #提交文件到仓库 $ git commit -m &amp;apos;this is comment&amp;apos; #查看历史提交记录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git 常用命令">
 <meta property="og:url" content="http://lilixin.top/2017/08/11/git-常用命令/index.html">
 <meta property="og:site_name" content="轻舞飞扬">
-<meta property="og:description" content="#创建版本库  把当前目录初始化为git版本仓库  $ git init #查看当前仓库状态    $ git status #查看某一文件不同    $ git diff #查看工作区和版本库的区别    $ git diff HEAD – 文件名 #添加文件到仓库    $ git add  #提交文件到仓库    $ git commit -m ‘this is comment’ #查看历史">
+<meta property="og:description" content="#创建版本库  把当前目录初始化为git版本仓库  $ git init #查看当前仓库状态 $ git status #查看某一文件不同 $ git diff #查看工作区和版本库的区别 $ git diff HEAD -- 文件名 #添加文件到仓库 $ git add  #提交文件到仓库 $ git commit -m &amp;apos;this is comment&amp;apos; #查看历史提交记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-11T10:14:37.000Z">
+<meta property="og:updated_time" content="2017-08-11T10:16:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 常用命令">
-<meta name="twitter:description" content="#创建版本库  把当前目录初始化为git版本仓库  $ git init #查看当前仓库状态    $ git status #查看某一文件不同    $ git diff #查看工作区和版本库的区别    $ git diff HEAD – 文件名 #添加文件到仓库    $ git add  #提交文件到仓库    $ git commit -m ‘this is comment’ #查看历史">
+<meta name="twitter:description" content="#创建版本库  把当前目录初始化为git版本仓库  $ git init #查看当前仓库状态 $ git status #查看某一文件不同 $ git diff #查看工作区和版本库的区别 $ git diff HEAD -- 文件名 #添加文件到仓库 $ git add  #提交文件到仓库 $ git commit -m &amp;apos;this is comment&amp;apos; #查看历史提交记录">
 
 
 
@@ -327,53 +327,82 @@
 <p>把当前目录初始化为git版本仓库</p>
 </blockquote>
 <pre><code>$ git init
-</code></pre><p>#查看当前仓库状态<br>    $ git status</p>
-<p>#查看某一文件不同<br>    $ git diff</p>
-<p>#查看工作区和版本库的区别<br>    $ git diff HEAD – 文件名</p>
-<p>#添加文件到仓库<br>    $ git add </p>
-<p>#提交文件到仓库<br>    $ git commit -m ‘this is comment’</p>
-<p>#查看历史提交记录<br>    $ git log</p>
-<p>#版本回退<br>    $ git reset –hard HEAD </p>
-<blockquote>
+</code></pre><p>#查看当前仓库状态</p>
+<pre><code>$ git status
+</code></pre><p>#查看某一文件不同</p>
+<pre><code>$ git diff
+</code></pre><p>#查看工作区和版本库的区别</p>
+<pre><code>$ git diff HEAD -- 文件名
+</code></pre><p>#添加文件到仓库</p>
+<pre><code>$ git add 
+</code></pre><p>#提交文件到仓库</p>
+<pre><code>$ git commit -m &apos;this is comment&apos;
+</code></pre><p>#查看历史提交记录</p>
+<pre><code>$ git log
+</code></pre><p>#版本回退</p>
+<pre><code>$ git reset --hard HEAD 
+</code></pre><blockquote>
 <p>HEAD的位置还可以写成git log 显示出来的版本号</p>
 </blockquote>
-<p>#放弃更改<br>    $ git checkout – 文件名</p>
-<blockquote>
+<p>#放弃更改</p>
+<pre><code>$ git checkout -- 文件名
+</code></pre><blockquote>
 <p>放弃工作区的更改 未执行 git add 之前才可以 </p>
 </blockquote>
-<p>#删除文件<br>    $ git rm filename </p>
-<blockquote>
+<p>#删除文件</p>
+<pre><code>$ git rm filename 
+</code></pre><blockquote>
 <p>执行rm后要commit 才行</p>
 </blockquote>
-<p>#推送到远程仓库<br>    $ git push</p>
-<p>#添加账号信息<br>     $ git config –global user.name “lilixin”<br>     $ git config –global user.email lilixin0507@163.com<br>     $ git config –global user.password mypassword</p>
-<p>#仓库克隆<br>    $ git clone git@github.com:lilixin/gitskills.git</p>
-<p>#查看远程仓库信息<br>    $ git remote -v</p>
-<p>#创建分支<br>    $ git branch dev</p>
-<p>#切换分支<br>    $ git checkout dev</p>
-<blockquote>
+<p>#推送到远程仓库</p>
+<pre><code>$ git push
+</code></pre><p>#添加账号信息</p>
+<pre><code>$ git config --global user.name &quot;lilixin&quot;
+$ git config --global user.email lilixin0507@163.com
+$ git config --global user.password mypassword
+</code></pre><p>#仓库克隆</p>
+<pre><code>$ git clone git@github.com:lilixin/gitskills.git
+</code></pre><p>#查看远程仓库信息</p>
+<pre><code>$ git remote -v
+</code></pre><p>#创建分支</p>
+<pre><code>$ git branch dev
+</code></pre><p>#切换分支</p>
+<pre><code>$ git checkout dev
+</code></pre><blockquote>
 <p>git checkout -b dev 相当于上面两条命令 创建并切换分支</p>
 </blockquote>
-<p>#查看所有分支<br>    $ git branch</p>
-<p>#合并分支<br>    $ git merge dev</p>
-<blockquote>
+<p>#查看所有分支</p>
+<pre><code>$ git branch
+</code></pre><p>#合并分支</p>
+<pre><code>$ git merge dev
+</code></pre><blockquote>
 <p>把dev分支合并到master分支上</p>
 </blockquote>
-<p>#删除分支<br>    $ git branch -d dev</p>
-<p>#保存当前工作区<br>    $ git stash</p>
-<p>#查看保存的工作区列表<br>    $ git stash list</p>
-<p>#恢复工作区并删除<br>    $ git stash pop</p>
-<p>#打标签<br>    $ git tag v1.0</p>
-<blockquote>
+<p>#删除分支</p>
+<pre><code>$ git branch -d dev
+</code></pre><p>#保存当前工作区</p>
+<pre><code>$ git stash
+</code></pre><p>#查看保存的工作区列表</p>
+<pre><code>$ git stash list
+</code></pre><p>#恢复工作区并删除</p>
+<pre><code>$ git stash pop
+</code></pre><p>#打标签</p>
+<pre><code>$ git tag v1.0
+</code></pre><blockquote>
 <p>对历史提交版本打标签 git tag v1.0 版本号</p>
 </blockquote>
-<p>#查看标签<br>    $ git tag</p>
-<blockquote>
+<p>#查看标签</p>
+<pre><code>$ git tag
+</code></pre><blockquote>
 <p>查看标签说明 git show <tagname></tagname></p>
 </blockquote>
-<p>#删除标签<br>    $ git tag -d v0.9</p>
-<p>#别名<br>    $ git config –global alias.co checkout<br>    $ git config –global alias.ci commit<br>    $ git config –global alias.br branch</p>
-<blockquote>
+<p>#删除标签</p>
+<pre><code>$ git tag -d v0.9
+</code></pre><p>#别名</p>
+<pre><code>$ git config --global alias.co checkout
+$ git config --global alias.ci commit
+$ git config --global alias.br branch
+</code></pre><blockquote>
 <p>这样以后使用 co ci br 命令更方便操作</p>
 </blockquote>
 
