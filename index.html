@@ -325,84 +325,58 @@
       
         
           
-            <p>#创建版本库</p>
-<blockquote>
+            <h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1><blockquote>
 <p>把当前目录初始化为git版本仓库</p>
 </blockquote>
 <pre><code>$ git init
-</code></pre><p>#查看当前仓库状态</p>
-<pre><code>$ git status
-</code></pre><p>#查看某一文件不同</p>
-<pre><code>$ git diff
-</code></pre><p>#查看工作区和版本库的区别</p>
-<pre><code>$ git diff HEAD -- 文件名
-</code></pre><p>#添加文件到仓库</p>
-<pre><code>$ git add 
-</code></pre><p>#提交文件到仓库</p>
-<pre><code>$ git commit -m &apos;this is comment&apos;
-</code></pre><p>#查看历史提交记录</p>
-<pre><code>$ git log
-</code></pre><p>#版本回退</p>
-<pre><code>$ git reset --hard HEAD 
+</code></pre><h1 id="查看当前仓库状态"><a href="#查看当前仓库状态" class="headerlink" title="查看当前仓库状态"></a>查看当前仓库状态</h1><pre><code>$ git status
+</code></pre><h1 id="查看某一文件不同"><a href="#查看某一文件不同" class="headerlink" title="查看某一文件不同"></a>查看某一文件不同</h1><pre><code>$ git diff
+</code></pre><h1 id="查看工作区和版本库的区别"><a href="#查看工作区和版本库的区别" class="headerlink" title="查看工作区和版本库的区别"></a>查看工作区和版本库的区别</h1><pre><code>$ git diff HEAD -- 文件名
+</code></pre><h1 id="添加文件到仓库"><a href="#添加文件到仓库" class="headerlink" title="添加文件到仓库"></a>添加文件到仓库</h1><pre><code>$ git add 
+</code></pre><h1 id="提交文件到仓库"><a href="#提交文件到仓库" class="headerlink" title="提交文件到仓库"></a>提交文件到仓库</h1><pre><code>$ git commit -m &apos;this is comment&apos;
+</code></pre><h1 id="查看历史提交记录"><a href="#查看历史提交记录" class="headerlink" title="查看历史提交记录"></a>查看历史提交记录</h1><pre><code>$ git log
+</code></pre><h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><pre><code>$ git reset --hard HEAD 
 </code></pre><blockquote>
 <p>HEAD的位置还可以写成git log 显示出来的版本号</p>
 </blockquote>
-<p>#放弃更改</p>
-<pre><code>$ git checkout -- 文件名
+<h1 id="放弃更改"><a href="#放弃更改" class="headerlink" title="放弃更改"></a>放弃更改</h1><pre><code>$ git checkout -- 文件名
 </code></pre><blockquote>
 <p>放弃工作区的更改 未执行 git add 之前才可以 </p>
 </blockquote>
-<p>#删除文件</p>
-<pre><code>$ git rm filename 
+<h1 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h1><pre><code>$ git rm filename 
 </code></pre><blockquote>
 <p>执行rm后要commit 才行</p>
 </blockquote>
-<p>#推送到远程仓库</p>
-<pre><code>$ git push
-</code></pre><p>#添加账号信息</p>
-<pre><code>$ git config --global user.name &quot;lilixin&quot;
+<h1 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h1><pre><code>$ git push
+</code></pre><h1 id="添加账号信息"><a href="#添加账号信息" class="headerlink" title="添加账号信息"></a>添加账号信息</h1><pre><code>$ git config --global user.name &quot;lilixin&quot;
 $ git config --global user.email lilixin0507@163.com
 $ git config --global user.password mypassword
-</code></pre><p>#仓库克隆</p>
-<pre><code>$ git clone git@github.com:lilixin/gitskills.git
-</code></pre><p>#查看远程仓库信息</p>
-<pre><code>$ git remote -v
-</code></pre><p>#创建分支</p>
-<pre><code>$ git branch dev
-</code></pre><p>#切换分支</p>
-<pre><code>$ git checkout dev
+</code></pre><h1 id="仓库克隆"><a href="#仓库克隆" class="headerlink" title="仓库克隆"></a>仓库克隆</h1><pre><code>$ git clone git@github.com:lilixin/gitskills.git
+</code></pre><h1 id="查看远程仓库信息"><a href="#查看远程仓库信息" class="headerlink" title="查看远程仓库信息"></a>查看远程仓库信息</h1><pre><code>$ git remote -v
+</code></pre><h1 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h1><pre><code>$ git branch dev
+</code></pre><h1 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h1><pre><code>$ git checkout dev
 </code></pre><blockquote>
 <p>git checkout -b dev 相当于上面两条命令 创建并切换分支</p>
 </blockquote>
-<p>#查看所有分支</p>
-<pre><code>$ git branch
-</code></pre><p>#合并分支</p>
-<pre><code>$ git merge dev
+<h1 id="查看所有分支"><a href="#查看所有分支" class="headerlink" title="查看所有分支"></a>查看所有分支</h1><pre><code>$ git branch
+</code></pre><h1 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h1><pre><code>$ git merge dev
 </code></pre><blockquote>
 <p>把dev分支合并到master分支上</p>
 </blockquote>
-<p>#删除分支</p>
-<pre><code>$ git branch -d dev
-</code></pre><p>#保存当前工作区</p>
-<pre><code>$ git stash
-</code></pre><p>#查看保存的工作区列表</p>
-<pre><code>$ git stash list
-</code></pre><p>#恢复工作区并删除</p>
-<pre><code>$ git stash pop
-</code></pre><p>#打标签</p>
-<pre><code>$ git tag v1.0
+<h1 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h1><pre><code>$ git branch -d dev
+</code></pre><h1 id="保存当前工作区"><a href="#保存当前工作区" class="headerlink" title="保存当前工作区"></a>保存当前工作区</h1><pre><code>$ git stash
+</code></pre><h1 id="查看保存的工作区列表"><a href="#查看保存的工作区列表" class="headerlink" title="查看保存的工作区列表"></a>查看保存的工作区列表</h1><pre><code>$ git stash list
+</code></pre><h1 id="恢复工作区并删除"><a href="#恢复工作区并删除" class="headerlink" title="恢复工作区并删除"></a>恢复工作区并删除</h1><pre><code>$ git stash pop
+</code></pre><h1 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h1><pre><code>$ git tag v1.0
 </code></pre><blockquote>
 <p>对历史提交版本打标签 git tag v1.0 版本号</p>
 </blockquote>
-<p>#查看标签</p>
-<pre><code>$ git tag
+<h1 id="查看标签"><a href="#查看标签" class="headerlink" title="查看标签"></a>查看标签</h1><pre><code>$ git tag
 </code></pre><blockquote>
 <p>查看标签说明 git show <tagname></tagname></p>
 </blockquote>
-<p>#删除标签</p>
-<pre><code>$ git tag -d v0.9
-</code></pre><p>#别名</p>
-<pre><code>$ git config --global alias.co checkout
+<h1 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h1><pre><code>$ git tag -d v0.9
+</code></pre><h1 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h1><pre><code>$ git config --global alias.co checkout
 $ git config --global alias.ci commit
 $ git config --global alias.br branch
 </code></pre><blockquote>
