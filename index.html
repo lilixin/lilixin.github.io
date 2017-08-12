@@ -336,8 +336,15 @@
       
         
           
-            <h1 id="待整理"><a href="#待整理" class="headerlink" title="待整理"></a>待整理</h1>
+          待整理
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/11/Mongodb-Gridfs实现图片存储解决方案/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -467,65 +474,23 @@
       
         
           
-            <h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1><blockquote>
-<p>把当前目录初始化为git版本仓库</p>
-</blockquote>
-<pre><code>$ git init
-</code></pre><h1 id="查看当前仓库状态"><a href="#查看当前仓库状态" class="headerlink" title="查看当前仓库状态"></a>查看当前仓库状态</h1><pre><code>$ git status
-</code></pre><h1 id="查看某一文件不同"><a href="#查看某一文件不同" class="headerlink" title="查看某一文件不同"></a>查看某一文件不同</h1><pre><code>$ git diff
-</code></pre><h1 id="查看工作区和版本库的区别"><a href="#查看工作区和版本库的区别" class="headerlink" title="查看工作区和版本库的区别"></a>查看工作区和版本库的区别</h1><pre><code>$ git diff HEAD -- 文件名
-</code></pre><h1 id="添加文件到仓库"><a href="#添加文件到仓库" class="headerlink" title="添加文件到仓库"></a>添加文件到仓库</h1><pre><code>$ git add 
-</code></pre><h1 id="提交文件到仓库"><a href="#提交文件到仓库" class="headerlink" title="提交文件到仓库"></a>提交文件到仓库</h1><pre><code>$ git commit -m &apos;this is comment&apos;
-</code></pre><h1 id="查看历史提交记录"><a href="#查看历史提交记录" class="headerlink" title="查看历史提交记录"></a>查看历史提交记录</h1><pre><code>$ git log
-</code></pre><h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><pre><code>$ git reset --hard HEAD 
-</code></pre><blockquote>
-<p>HEAD的位置还可以写成git log 显示出来的版本号</p>
-</blockquote>
-<h1 id="放弃更改"><a href="#放弃更改" class="headerlink" title="放弃更改"></a>放弃更改</h1><pre><code>$ git checkout -- 文件名
-</code></pre><blockquote>
-<p>放弃工作区的更改 未执行 git add 之前才可以 </p>
-</blockquote>
-<h1 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h1><pre><code>$ git rm filename 
-</code></pre><blockquote>
-<p>执行rm后要commit 才行</p>
-</blockquote>
-<h1 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h1><pre><code>$ git push
-</code></pre><h1 id="添加账号信息"><a href="#添加账号信息" class="headerlink" title="添加账号信息"></a>添加账号信息</h1><pre><code>$ git config --global user.name &quot;lilixin&quot;
-$ git config --global user.email lilixin0507@163.com
-$ git config --global user.password mypassword
-</code></pre><h1 id="仓库克隆"><a href="#仓库克隆" class="headerlink" title="仓库克隆"></a>仓库克隆</h1><pre><code>$ git clone git@github.com:lilixin/gitskills.git
-</code></pre><h1 id="查看远程仓库信息"><a href="#查看远程仓库信息" class="headerlink" title="查看远程仓库信息"></a>查看远程仓库信息</h1><pre><code>$ git remote -v
-</code></pre><h1 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h1><pre><code>$ git branch dev
-</code></pre><h1 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h1><pre><code>$ git checkout dev
-</code></pre><blockquote>
-<p>git checkout -b dev 相当于上面两条命令 创建并切换分支</p>
-</blockquote>
-<h1 id="查看所有分支"><a href="#查看所有分支" class="headerlink" title="查看所有分支"></a>查看所有分支</h1><pre><code>$ git branch
-</code></pre><h1 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h1><pre><code>$ git merge dev
-</code></pre><blockquote>
-<p>把dev分支合并到master分支上</p>
-</blockquote>
-<h1 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h1><pre><code>$ git branch -d dev
-</code></pre><h1 id="保存当前工作区"><a href="#保存当前工作区" class="headerlink" title="保存当前工作区"></a>保存当前工作区</h1><pre><code>$ git stash
-</code></pre><h1 id="查看保存的工作区列表"><a href="#查看保存的工作区列表" class="headerlink" title="查看保存的工作区列表"></a>查看保存的工作区列表</h1><pre><code>$ git stash list
-</code></pre><h1 id="恢复工作区并删除"><a href="#恢复工作区并删除" class="headerlink" title="恢复工作区并删除"></a>恢复工作区并删除</h1><pre><code>$ git stash pop
-</code></pre><h1 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h1><pre><code>$ git tag v1.0
-</code></pre><blockquote>
-<p>对历史提交版本打标签 git tag v1.0 版本号</p>
-</blockquote>
-<h1 id="查看标签"><a href="#查看标签" class="headerlink" title="查看标签"></a>查看标签</h1><pre><code>$ git tag
-</code></pre><blockquote>
-<p>查看标签说明 git show <tagname></tagname></p>
-</blockquote>
-<h1 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h1><pre><code>$ git tag -d v0.9
-</code></pre><h1 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h1><pre><code>$ git config --global alias.co checkout
-$ git config --global alias.ci commit
-$ git config --global alias.br branch
-</code></pre><blockquote>
-<p>这样以后使用 co ci br 命令更方便操作</p>
-</blockquote>
+          创建版本库
+把当前目录初始化为git版本仓库
 
-          
+$ git init
+查看当前仓库状态$ git status
+查看某一文件不同$ git diff
+查看工作区和版本库的区别$ git diff HEAD -- 文件名
+添加文件到仓库$ git add 
+提交文件到仓库$ git commit -m
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/11/git-常用命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -655,15 +620,16 @@ $ git config --global alias.br branch
       
         
           
-            <h1 id="依赖冲突"><a href="#依赖冲突" class="headerlink" title="依赖冲突"></a>依赖冲突</h1><h3 id="最常遇到的一个冲突"><a href="#最常遇到的一个冲突" class="headerlink" title="最常遇到的一个冲突"></a>最常遇到的一个冲突</h3><p>日志相关jar包的冲突问题 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SLF4J: Class path contains multiple SLF4J bindings.</div><div class="line">SLF4J: Found binding in [jar:file:/Users/lilixin/IdeaProjects/coupon_leeco/coupon_new_oa/target/coupon_new_oa-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-slf4j-impl-2.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: Found binding in [jar:file:/Users/lilixin/IdeaProjects/coupon_leeco/coupon_new_oa/target/coupon_new_oa-0.0.1-SNAPSHOT/WEB-INF/lib/slf4j-log4j12-1.6.6.jar!/org/slf4j/impl/StaticLoggerBinder.class]</div><div class="line">SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.</div><div class="line">SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory</div></pre></td></tr></table></figure>
-<h1 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h1><h2 id="首先确定多个jar包来源"><a href="#首先确定多个jar包来源" class="headerlink" title="首先确定多个jar包来源"></a>首先确定多个jar包来源</h2><h4 id="到项目目录执行"><a href="#到项目目录执行" class="headerlink" title="到项目目录执行"></a>到项目目录执行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn dependency:tree</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">[INFO] Scanning for projects...</div><div class="line">[INFO]</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Building coupon_new_oa 0.0.1-SNAPSHOT</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO]</div><div class="line">[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ coupon_new_oa ---</div><div class="line">[INFO] com.bybon.coupon:coupon_new_oa:war:0.0.1-SNAPSHOT</div><div class="line">[INFO] +- org.springframework.data:spring-data-redis:jar:1.0.2.RELEASE:compile</div><div class="line">[INFO] |  +- log4j:log4j:jar:1.2.17:runtime</div><div class="line">[INFO] |  \- org.slf4j:slf4j-log4j12:jar:1.6.6:runtime</div><div class="line">[INFO] +- org.springframework:spring-context:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] |  \- org.springframework:spring-expression:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-context-support:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-aop:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] |  \- aopalliance:aopalliance:jar:1.0:compile</div><div class="line">[INFO] +- org.springframework:spring-web:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-webmvc:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-beans:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-core:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-tx:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-orm:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] |  \- org.springframework:spring-jdbc:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-aspects:jar:4.1.5.RELEASE:compile</div><div class="line">[INFO] +- org.springframework:spring-test:jar:4.1.5.RELEASE:test</div><div class="line">[INFO] +- cglib:cglib-nodep:jar:3.1:compile</div><div class="line">[INFO] +- org.aspectj:aspectjrt:jar:1.8.5:compile</div><div class="line">[INFO] +- org.aspectj:aspectjweaver:jar:1.8.5:compile</div><div class="line">[INFO] +- mysql:mysql-connector-java:jar:5.1.34:compile</div><div class="line">[INFO] +- org.mybatis:mybatis:jar:3.2.8:compile</div><div class="line">[INFO] +- org.mybatis:mybatis-spring:jar:1.2.2:compile</div><div class="line">[INFO] +- com.alibaba:druid:jar:0.2.9:compile</div><div class="line">[INFO] +- javax.servlet:javax.servlet-api:jar:3.1.0:provided</div><div class="line">[INFO] +- com.alibaba:fastjson:jar:1.2.4:compile</div><div class="line">[INFO] +- org.slf4j:slf4j-api:jar:1.7.10:compile</div><div class="line">[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.3:compile</div><div class="line">[INFO] |  \- org.apache.logging.log4j:log4j-api:jar:2.3:compile</div><div class="line">[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.3:compile</div><div class="line">[INFO] +- org.slf4j:jcl-over-slf4j:jar:1.7.12:compile</div></pre></td></tr></table></figure>
-<h4 id="找到冲突的两个jar包来源"><a href="#找到冲突的两个jar包来源" class="headerlink" title="找到冲突的两个jar包来源"></a>找到冲突的两个jar包来源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">slf4j-log4j12:jar:1.6.6 来自于spring-data-redis</div><div class="line">log4j-slf4j-impl:jar:2.3 为主动引入</div></pre></td></tr></table></figure>
-<h4 id="在pom-xml中去除一个-我们这里去除spring-data-redis里引入的"><a href="#在pom-xml中去除一个-我们这里去除spring-data-redis里引入的" class="headerlink" title="在pom.xml中去除一个 我们这里去除spring-data-redis里引入的"></a>在pom.xml中去除一个 我们这里去除spring-data-redis里引入的</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.springframework.data&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;spring-data-redis&lt;/artifactId&gt;</div><div class="line">			&lt;version&gt;1.0.2.RELEASE&lt;/version&gt;</div><div class="line">			&lt;exclusions&gt;</div><div class="line">				&lt;exclusion&gt;</div><div class="line">					&lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;</div><div class="line">					&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">				&lt;/exclusion&gt;</div><div class="line">			&lt;/exclusions&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-<h3 id="然后再编译打包就解决此冲突了，其它冲突同理"><a href="#然后再编译打包就解决此冲突了，其它冲突同理" class="headerlink" title="然后再编译打包就解决此冲突了，其它冲突同理"></a>然后再编译打包就解决此冲突了，其它冲突同理</h3><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><h3 id="还可以使用mvn-dependency-analyze来分析你引入的依赖"><a href="#还可以使用mvn-dependency-analyze来分析你引入的依赖" class="headerlink" title="还可以使用mvn dependency:analyze来分析你引入的依赖"></a>还可以使用mvn dependency:analyze来分析你引入的依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[INFO] --- maven-dependency-plugin:2.8:analyze (default-cli) @ coupon_new_oa ---</div><div class="line">[WARNING] Used undeclared dependencies found:</div><div class="line">[WARNING]    org.springframework:spring-jdbc:jar:4.1.5.RELEASE:compile</div><div class="line">[WARNING]    org.apache.httpcomponents:httpcore:jar:4.4:compile</div><div class="line">[WARNING] Unused declared dependencies found:</div><div class="line">[WARNING]    org.springframework.data:spring-data-redis:jar:1.0.2.RELEASE:compile</div><div class="line">[WARNING]    org.springframework:spring-context-support:jar:4.1.5.RELEASE:compile</div><div class="line">[WARNING]    org.springframework:spring-aop:jar:4.1.5.RELEASE:compile</div><div class="line">[WARNING]    org.springframework:spring-orm:jar:4.1.5.RELEASE:compile</div><div class="line">[WARNING]    org.springframework:spring-aspects:jar:4.1.5.RELEASE:compile</div><div class="line">[WARNING]    org.springframework:spring-test:jar:4.1.5.RELEASE:test</div></pre></td></tr></table></figure>
-<h3 id="上面会列出使用的但未声明的和未使用的但声明了的依赖，根据提示册子多余的依赖，但实际开发中发我发现很多包实际上使用了-所以删除时要小心"><a href="#上面会列出使用的但未声明的和未使用的但声明了的依赖，根据提示册子多余的依赖，但实际开发中发我发现很多包实际上使用了-所以删除时要小心" class="headerlink" title="上面会列出使用的但未声明的和未使用的但声明了的依赖，根据提示册子多余的依赖，但实际开发中发我发现很多包实际上使用了  所以删除时要小心"></a>上面会列出使用的但未声明的和未使用的但声明了的依赖，根据提示册子多余的依赖，但实际开发中发我发现很多包实际上使用了  所以删除时要小心</h3>
-          
+          依赖冲突最常遇到的一个冲突日志相关jar包的冲突问题 
+12345SLF4J: Class path contains multiple SLF4J bindings.SLF4J: Found binding in [jar:file:/Users/lilixin/IdeaProjects/coup
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/10/Maven-解决依赖冲突问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -793,9 +759,15 @@ $ git config --global alias.br branch
       
         
           
-            <h1 id="引入jar"><a href="#引入jar" class="headerlink" title="引入jar"></a>引入jar</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">			&lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;</div><div class="line">			&lt;artifactId&gt;httpclient&lt;/artifactId&gt;</div><div class="line">			&lt;version&gt;4.4&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-<h1 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line">package top.lilixin.util;/**</div><div class="line"> * Created by lilixin on 08/08/2017.</div><div class="line"> */</div><div class="line"></div><div class="line">/**</div><div class="line"> * @author lilixin</div><div class="line"> * @create 2017-08-08 3:18 PM</div><div class="line"> **/</div><div class="line"></div><div class="line">import org.apache.http.HttpEntity;</div><div class="line">import org.apache.http.NameValuePair;</div><div class="line">import org.apache.http.ParseException;</div><div class="line">import org.apache.http.client.ClientProtocolException;</div><div class="line">import org.apache.http.client.entity.UrlEncodedFormEntity;</div><div class="line">import org.apache.http.client.methods.CloseableHttpResponse;</div><div class="line">import org.apache.http.client.methods.HttpGet;</div><div class="line">import org.apache.http.client.methods.HttpPost;</div><div class="line">import org.apache.http.impl.client.CloseableHttpClient;</div><div class="line">import org.apache.http.impl.client.HttpClients;</div><div class="line">import org.apache.http.message.BasicNameValuePair;</div><div class="line">import org.apache.http.util.EntityUtils;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.io.UnsupportedEncodingException;</div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line">import java.util.Map;</div><div class="line"></div><div class="line">public class HttpClientUtil &#123;</div><div class="line">    /**</div><div class="line">     * 发送 post请求访问本地应用并根据传递参数不同返回不同结果</div><div class="line">     */</div><div class="line">    public static String post(String url,Map&lt;String,String&gt; params) &#123;</div><div class="line"></div><div class="line">        // 创建默认的httpClient实例.</div><div class="line">        CloseableHttpClient httpclient = HttpClients.createDefault();</div><div class="line">        // 创建httppost</div><div class="line">        HttpPost httppost = new HttpPost(url);</div><div class="line">        // 创建参数队列</div><div class="line">        List&lt;NameValuePair&gt; formparams = new ArrayList&lt;NameValuePair&gt;();</div><div class="line">        for (String pkey : params.keySet()) &#123;</div><div class="line">            formparams.add(new BasicNameValuePair(pkey, params.get(pkey)));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        UrlEncodedFormEntity uefEntity;</div><div class="line">        try &#123;</div><div class="line">            uefEntity = new UrlEncodedFormEntity(formparams, &quot;UTF-8&quot;);</div><div class="line">            httppost.setEntity(uefEntity);</div><div class="line">            CloseableHttpResponse response = httpclient.execute(httppost);</div><div class="line">            try &#123;</div><div class="line">                HttpEntity entity = response.getEntity();</div><div class="line">                if (entity != null) &#123;</div><div class="line">                    return EntityUtils.toString(entity, &quot;UTF-8&quot;);</div><div class="line">                &#125;</div><div class="line">            &#125; finally &#123;</div><div class="line">                if(response != null)&#123;</div><div class="line">                    response.close();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (UnsupportedEncodingException e1) &#123;</div><div class="line">            e1.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; finally &#123;</div><div class="line">            // 关闭连接,释放资源</div><div class="line">            try &#123;</div><div class="line">                if(httpclient != null)&#123;</div><div class="line">                    httpclient.close();</div><div class="line">                &#125;</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 发送 get请求</div><div class="line">     */</div><div class="line">    public static String get(String url) &#123;</div><div class="line">        CloseableHttpClient httpclient = HttpClients.createDefault();</div><div class="line">        try &#123;</div><div class="line">            // 创建httpget.</div><div class="line">            HttpGet httpget = new HttpGet(url);</div><div class="line">            // 执行get请求.</div><div class="line">            CloseableHttpResponse response = null;</div><div class="line">            try &#123;</div><div class="line">                response = httpclient.execute(httpget);</div><div class="line">                // 获取响应实体</div><div class="line">                HttpEntity entity = response.getEntity();</div><div class="line">                // 打印响应状态</div><div class="line">                if (entity != null) &#123;</div><div class="line">                    return EntityUtils.toString(entity);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125; catch (ClientProtocolException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125; catch (ParseException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            return null;</div><div class="line"></div><div class="line">        &#125;finally &#123;</div><div class="line">            if (httpclient != null)&#123;</div><div class="line">                try &#123;</div><div class="line">                    httpclient.close();</div><div class="line">                &#125; catch (IOException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
+          引入jar12345&lt;dependency&gt;			&lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;			&lt;artifactId&gt;httpclient&lt;/artifactId&gt;			&lt;versio
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/08/HttpClient使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -925,11 +897,15 @@ $ git config --global alias.br branch
       
         
           
-            <h1 id="使用javax-mail包发送邮件"><a href="#使用javax-mail包发送邮件" class="headerlink" title="使用javax.mail包发送邮件"></a>使用javax.mail包发送邮件</h1><h3 id="注意别引错包"><a href="#注意别引错包" class="headerlink" title="注意别引错包"></a>注意别引错包</h3><p>有的jar没有包含sun的实现，只包含了api，这类jar名称通常为javax.mail-api-x.x.x.jar 在使用smtp协议发邮件过程中会报错：java.lang.ClassNotFoundException: com.sun.mail.util.MailLogger </p>
-<p>另一种jar是包含了sun的实现的，名称通常为javax.mail-x.x.x.jar，使用smtp协议发邮件正常！</p>
-<h1 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">import javax.mail.Message;  </div><div class="line">import javax.mail.Session;  </div><div class="line">import javax.mail.Transport;  </div><div class="line">import javax.mail.internet.InternetAddress;  </div><div class="line">import javax.mail.internet.MimeMessage;  </div><div class="line">import java.util.Date;  </div><div class="line">import java.util.Properties;</div><div class="line"></div><div class="line">/**</div><div class="line">	 * @author lilixin</div><div class="line">	 * @param sendTo</div><div class="line">	 * @param content</div><div class="line">	 * @param subject</div><div class="line">	 * @throws MessagingException</div><div class="line">	 */</div><div class="line">	public static void sendHtmlMail(String sendTo,String content,String subject) throws MessagingException&#123;</div><div class="line">		Properties props = new Properties(); //可以加载一个配置文件</div><div class="line">		// 使用smtp：简单邮件传输协议</div><div class="line">		props.put(&quot;mail.smtp.host&quot;, &quot;smtp.163.com&quot;);//存储发送邮件服务器的信息</div><div class="line">		props.put(&quot;mail.smtp.auth&quot;, &quot;true&quot;);//同时通过验证</div><div class="line"></div><div class="line">		Session session = Session.getInstance(props);//根据属性新建一个邮件会话</div><div class="line"></div><div class="line">		MimeMessage message = new MimeMessage(session);//由邮件会话新建一个消息对象</div><div class="line">		message.setFrom(new InternetAddress(&quot;lilixin0507@163.com&quot;));//设置发件人的地址</div><div class="line">		message.setRecipient(Message.RecipientType.TO, new InternetAddress(sendTo));//设置收件人,并设置其接收类型为TO</div><div class="line">		message.setSubject(subject);//设置标题</div><div class="line">		//设置信件内容</div><div class="line">		message.setContent(content, &quot;text/html;charset=gbk&quot;); //发送HTML邮件，内容样式比较丰富</div><div class="line">		message.setSentDate(new Date());//设置发信时间</div><div class="line">		message.saveChanges();//存储邮件信息</div><div class="line"></div><div class="line">		//发送邮件</div><div class="line">        Transport transport = session.getTransport(&quot;smtp&quot;);</div><div class="line">		transport.connect(&quot;lilixin0507@163.com&quot;, &quot;mypassword&quot;);</div><div class="line">		transport.sendMessage(message, message.getAllRecipients());//发送邮件,其中第二个参数是所有已设好的收件人地址</div><div class="line">		transport.close();</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args)&#123;</div><div class="line">	    try &#123;</div><div class="line">            sendHtmlMail(&quot;lilixin0507@163.com&quot;, &quot;this is a ttt mail&quot;, &quot;这是我的一封邮件&quot;);</div><div class="line">        &#125; catch (MessagingException e) &#123;</div><div class="line">            // TODO Auto-generated catch block</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-          
+          使用javax.mail包发送邮件注意别引错包有的jar没有包含sun的实现，只包含了api，这类jar名称通常为javax.mail-api-x.x.x.jar 在使用smtp协议发邮件过程中会报错：java.lang.ClassNotFoundException: com.sun.mail.ut
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/07/javax-Mail邮件发送实例/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1059,18 +1035,15 @@ $ git config --global alias.br branch
       
         
           
-            <h1 id="Spring框架学习笔记一"><a href="#Spring框架学习笔记一" class="headerlink" title="Spring框架学习笔记一"></a>Spring框架学习笔记一</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Spring是分层的一站式轻量级开源框架，这里分层指的SUN提供的EE的三层结构，既WEB层、业务层、数据访问层。一站式指的是Spring对每一层都提供的解决方案，WEB层对应Spring Mvc 、业务层对应Spring的Bean管理、数据访问层提供了JDBC Template。</p>
-<h2 id="Spring优点"><a href="#Spring优点" class="headerlink" title="Spring优点"></a>Spring优点</h2><ul>
-<li>方便解耦，简化开发</li>
-<li>AOP编程的支持</li>
-<li>声明式事务的支持</li>
-<li>方便程序的测试</li>
-<li>方便集成各种优秀框架</li>
-<li>降低JavaEE API的使用难度</li>
-</ul>
-<h2 id="入门程序"><a href="#入门程序" class="headerlink" title="入门程序"></a>入门程序</h2><h4 id="下载Spring的开发包"><a href="#下载Spring的开发包" class="headerlink" title="下载Spring的开发包"></a>下载Spring的开发包</h4><p>官网下载spring-framework-x.x.x.RELEASE-dist.zip 解压后把文件夹里的lib目录导入工程</p>
-
-          
+          Spring框架学习笔记一简介Spring是分层的一站式轻量级开源框架，这里分层指的SUN提供的EE的三层结构，既WEB层、业务层、数据访问层。一站式指的是Spring对每一层都提供的解决方案，WEB层对应Spring Mvc 、业务层对应Spring的Bean管理、数据访问层提供了JDBC Tem
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/04/spring实战/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1200,38 +1173,16 @@ $ git config --global alias.br branch
       
         
           
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
-<p>Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了<strong>作业</strong>和<strong>触发器</strong>的多对多的关系，还能把多个作业与不同的触发器关联  Quartz-1.x与Quartz-2.x在使用上差别较大 这里介绍2.x版本</p>
-</blockquote>
-<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h4 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h4><p><img src="http://ou1kontjz.bkt.clouddn.com/f651228241775a70872596ea21f936ae.jpg" alt=""></p>
-<h4 id="核心接口及类"><a href="#核心接口及类" class="headerlink" title="核心接口及类"></a>核心接口及类</h4><ol>
-<li><strong>Job</strong> ：任务 它是一个接口，只有一个方法<br>void execute(JobExecutionContext context)<br>开发者实现该接口来定义自己的任务 ，其中JobExecutionContext类提供了调度上下文的各种信息，Job运行时的信息保存在JobDataMap实例中</li>
-<li><strong>JobDetail</strong>：Quartz在每次执行Job时，接受一个Job实现类，JobDetail 描述了Job实现类及其它相关的静态信息，如Job名字、描述、关联监听器等信息</li>
-<li><strong>Trigger</strong>：是一个类，它描述了触发Job执行的时间规则，简单说就是设置作业执行的时间、参数、条件等，主要有SimpleTrigger和CronTrigger这两个子类。CronTrigger支持Cron表达式，可以定义出复杂的时间规则</li>
-<li><strong>Calendar</strong>：org.quartz.Calendar和java.util.Calendar不同，它是一些日历特定时间点的集合,一个Trigger可以和多个Calendar关联，以便排除或包含某些时间点。</li>
-<li><strong>Scheduler</strong>：调度器 代表一个Quartz的独立运行容器，负责调度作业和触发器，JobDetail和Trigger可以注册在Scheduler中，拥有各自唯一的组及名称，组及名称是Scheduler查找定位容器中某一对象的依据</li>
-<li><strong>ThreadPool</strong>：Scheduler使用一个线程池作为任务运行的基础设施，任务通过共享线程池中的线程提高运行效率。</li>
-</ol>
-<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>Scheduler把Trigger绑定到某一个JobDetail上，这样当Trigger触发时对应的Job就会执行。<strong>一个Job可以对应多个Trigger，但一个Trigger只能对应一个Job。</strong>可以通过SchedulerFactory创建一个Scheduler，Scheduler里有一个SchedulerContext，它保存着Scheduler上下文件信息，类似与ServletContext，Job和Trigger都可以访问它。SchedulerContext内部有一个Map，以键值对的形式维护着上下文件信息，可以通过Scheduler.getContext()获取SchedulerContext对象</p>
-<h2 id="单独使用"><a href="#单独使用" class="headerlink" title="单独使用"></a>单独使用</h2><ol>
-<li><p>官网下载quartz包，将核心依赖quartz-x.x.x.jar以及相关jar包导入工程中</p>
-<blockquote>
-<p>如果是Maven项目 引入依赖jar包<br><code>&lt;dependency&gt;  
- &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;    
- &lt;artifactId&gt;quartz&lt;/artifactId&gt;    
- &lt;version&gt;2.2.3&lt;/version&gt;    
-&lt;/dependency&gt;</code></p>
-</blockquote>
-</li>
-<li><p>编写job类</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">package top.lilixin;</div><div class="line">import org.quartz.Job;</div><div class="line">import org.quartz.JobExecutionContext;</div><div class="line">import org.quartz.JobExecutionException;</div><div class="line">	</div><div class="line">import java.util.Date;</div><div class="line">	</div><div class="line">/**</div><div class="line"> * Created by lilixin on 03/08/2017.</div><div class="line"> */</div><div class="line"> </div><div class="line">public class MyJob implements Job&#123;</div><div class="line">    public void execute(JobExecutionContext context) throws JobExecutionException &#123;</div><div class="line">        System.out.println(&quot;my job is running ,time=&quot;+new Date());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>编写调度器</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">package top.lilixin;</div><div class="line"></div><div class="line">import org.quartz.*;</div><div class="line">import org.quartz.impl.StdSchedulerFactory;</div><div class="line"></div><div class="line"></div><div class="line">/**</div><div class="line"> * created by lilixin</div><div class="line"> */</div><div class="line">public class MyTask</div><div class="line">&#123;</div><div class="line">    public static void main( String[] args )&#123;</div><div class="line"></div><div class="line">        //通过SchedulerFactory 获取调度器 scheduler</div><div class="line">        SchedulerFactory factory = new StdSchedulerFactory();</div><div class="line">        try &#123;</div><div class="line">            Scheduler scheduler = factory.getScheduler();</div><div class="line"></div><div class="line">            //引进作业程序</div><div class="line">            JobBuilder jobBuilder = JobBuilder.newJob();</div><div class="line">            JobDetail jobDetail = jobBuilder.newJob(MyJob.class).withIdentity(&quot;job1&quot;,&quot;group1&quot;).build();</div><div class="line">            //新建一个时间</div><div class="line"></div><div class="line">            Trigger trigger = TriggerBuilder</div><div class="line">                    .newTrigger()</div><div class="line">                    .withIdentity(&quot;trigger1&quot;,&quot;group1&quot;)</div><div class="line">                    .startNow()</div><div class="line">                    .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(1).repeatForever())</div><div class="line">                    .build();</div><div class="line">            //作业和触发器设置到调度器里</div><div class="line">            scheduler.scheduleJob(jobDetail,trigger);</div><div class="line">            //启动调度器</div><div class="line">            scheduler.start();</div><div class="line"></div><div class="line">        &#125; catch (SchedulerException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="与spring集成使用"><a href="#与spring集成使用" class="headerlink" title="与spring集成使用"></a>与spring集成使用</h2>
-          
+          简介
+Quartz是一个完全由Java编写的开源作业调度框架，为在Java应用程序中进行作业调度提供了简单却强大的机制。Quartz允许开发人员根据时间间隔来调度作业，它实现了作业和触发器的多对多的关系，还能把多个作业与不同的触发器关联  Quartz-1.x与Quartz-2.x在使用上差别较大 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/02/quart定时任务及spring集成/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
