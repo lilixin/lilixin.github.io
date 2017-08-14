@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="待整理">
+<meta name="description" content="引入Maven依赖 mongodb 3.x 与2.x版本有很大不同 这里选用2.x版本  12345678910&amp;lt;dependency&amp;gt;      &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;      &amp;lt;artifactId&amp;gt;mongo-java-driver&amp;lt;/artifactId&amp;gt;      &amp;lt;version&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mongodb Gridfs实现图片存储解决方案">
 <meta property="og:url" content="http://lilixin.top/2017/08/11/Mongodb-Gridfs实现图片存储解决方案/index.html">
 <meta property="og:site_name" content="轻舞飞扬">
-<meta property="og:description" content="待整理">
+<meta property="og:description" content="引入Maven依赖 mongodb 3.x 与2.x版本有很大不同 这里选用2.x版本  12345678910&amp;lt;dependency&amp;gt;      &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;      &amp;lt;artifactId&amp;gt;mongo-java-driver&amp;lt;/artifactId&amp;gt;      &amp;lt;version&amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-11T10:44:18.000Z">
+<meta property="og:updated_time" content="2017-08-14T13:33:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mongodb Gridfs实现图片存储解决方案">
-<meta name="twitter:description" content="待整理">
+<meta name="twitter:description" content="引入Maven依赖 mongodb 3.x 与2.x版本有很大不同 这里选用2.x版本  12345678910&amp;lt;dependency&amp;gt;      &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;      &amp;lt;artifactId&amp;gt;mongo-java-driver&amp;lt;/artifactId&amp;gt;      &amp;lt;version&amp;">
 
 
 
@@ -322,7 +322,7 @@
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">3(字)</span>
+           <span class="post-count">380(字)</span>
            
          </span>
       
@@ -332,7 +332,7 @@
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">1(分)</span>
+           <span class="post-count">2(分)</span>
            
          </span>
 
@@ -353,7 +353,14 @@
       
 
       
-        <h1 id="待整理"><a href="#待整理" class="headerlink" title="待整理"></a>待整理</h1>
+        <h1 id="引入Maven依赖"><a href="#引入Maven依赖" class="headerlink" title="引入Maven依赖"></a>引入Maven依赖</h1><blockquote>
+<p>mongodb 3.x 与2.x版本有很大不同 这里选用2.x版本</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.mongodb&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;2.13.0-rc0&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.springframework.data&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;spring-data-mongodb&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.7.1.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<h1 id="mongoDB集成spring"><a href="#mongoDB集成spring" class="headerlink" title="mongoDB集成spring"></a>mongoDB集成spring</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line"></div><div class="line">       xmlns:mongo=&quot;http://www.springframework.org/schema/data/mongo&quot;</div><div class="line">       xsi:schemaLocation=&quot;</div><div class="line">        http://www.springframework.org/schema/beans</div><div class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">        http://www.springframework.org/schema/context</div><div class="line">        http://www.springframework.org/schema/context/spring-context.xsd</div><div class="line"></div><div class="line">        http://www.springframework.org/schema/data/mongo</div><div class="line">        http://www.springframework.org/schema/data/mongo/spring-mongo.xsd</div><div class="line">        &quot;&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;context:property-placeholder location=&quot;classpath*:conf/mongo.properties&quot;/&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;mongo:mongo-client host=&quot;$&#123;mongo.host&#125;&quot; port=&quot;$&#123;mongo.port&#125;&quot; id=&quot;mongo&quot;&gt;</div><div class="line">        &lt;mongo:client-options</div><div class="line">                write-concern=&quot;SAFE&quot; &lt;!--有密码时为SAFE--&gt;</div><div class="line">                connections-per-host=&quot;$&#123;mongo.connectionsPerHost&#125;&quot;</div><div class="line">                min-connections-per-host=&quot;$&#123;mongo.minConnectionsPerHost&#125;&quot;</div><div class="line">                threads-allowed-to-block-for-connection-multiplier=&quot;$&#123;mongo.threadsAllowedToBlockForConnectionMultiplier&#125;&quot;</div><div class="line">                connect-timeout=&quot;$&#123;mongo.connectTimeout&#125;&quot;</div><div class="line">                max-wait-time=&quot;$&#123;mongo.maxWaitTime&#125;&quot;</div><div class="line">                socket-keep-alive=&quot;$&#123;mongo.socketKeepAlive&#125;&quot;</div><div class="line">                socket-timeout=&quot;$&#123;mongo.socketTimeout&#125;&quot;</div><div class="line">                description=&quot;$&#123;mongo.description&#125;&quot;</div><div class="line">                max-connection-idle-time=&quot;$&#123;mongo.maxConnectionIdleTime&#125;&quot;</div><div class="line">                max-connection-life-time=&quot;$&#123;mongo.maxConnectionLifeTime&#125;&quot;</div><div class="line">                heartbeat-socket-timeout=&quot;$&#123;mongo.heartbeatSocketTimeout&#125;&quot;</div><div class="line">                heartbeat-connect-timeout=&quot;$&#123;mongo.heartbeatConnectTimeout&#125;&quot;</div><div class="line">                min-heartbeat-frequency=&quot;$&#123;mongo.minHeartbeatFrequency&#125;&quot;</div><div class="line">                heartbeat-frequency=&quot;$&#123;mongo.heartbeatFrequency&#125;&quot;</div><div class="line"></div><div class="line">        /&gt;</div><div class="line">    &lt;/mongo:mongo-client&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!--&lt;/mongo:mongo&gt;--&gt;</div><div class="line">    &lt;!-- 设置使用的数据库 名--&gt;</div><div class="line">    &lt;mongo:db-factory dbname=&quot;$&#123;mongo.defaultDbName&#125;&quot; mongo-ref=&quot;mongo&quot; username=&quot;$&#123;mongo.user&#125;&quot; password=&quot;$&#123;mongo.pwd&#125;&quot;/&gt;</div><div class="line">    &lt;!-- mongodb的模板 --&gt;</div><div class="line">    &lt;bean id=&quot;mongoTemplate&quot; class=&quot;org.springframework.data.mongodb.core.MongoTemplate&quot;&gt;</div><div class="line">        &lt;constructor-arg name=&quot;mongoDbFactory&quot; ref=&quot;mongoDbFactory&quot;/&gt;</div><div class="line">    &lt;/bean&gt;</div><div class="line"></div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure>
+<h1 id="属性文件"><a href="#属性文件" class="headerlink" title="属性文件"></a>属性文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#mongo.host=127.0.0.1</div><div class="line">mongo.port=27017</div><div class="line">mongo.defaultDbName=mongo_db</div><div class="line">mongo.user=root</div><div class="line">mongo.pwd=mypassword</div><div class="line"></div><div class="line">mongo.connectionsPerHost=10</div><div class="line">mongo.threadsAllowedToBlockForConnectionMultiplier=5</div><div class="line">mongo.minConnectionsPerHost=5</div><div class="line">#连接超时时间</div><div class="line">mongo.connectTimeout=10000</div><div class="line">#等待时间</div><div class="line">mongo.maxWaitTime=120000</div><div class="line">#Socket超时时间</div><div class="line">mongo.socketTimeout=0</div><div class="line">mongo.socketKeepAlive=true</div><div class="line"></div><div class="line">mongo.description=bybon pic mongodb</div><div class="line">mongo.maxConnectionIdleTime=1500</div><div class="line">mongo.maxConnectionLifeTime=0</div><div class="line">#mongo slave</div><div class="line">mongo.heartbeatSocketTimeout=1000</div><div class="line">mongo.heartbeatConnectTimeout=1500</div><div class="line">mongo.minHeartbeatFrequency=5</div><div class="line">mongo.heartbeatFrequency=10</div></pre></td></tr></table></figure>
+<p>#待续</p>
+
       
     </div>
 
@@ -559,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#待整理"><span class="nav-number">1.</span> <span class="nav-text">待整理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引入Maven依赖"><span class="nav-number">1.</span> <span class="nav-text">引入Maven依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mongoDB集成spring"><span class="nav-number">2.</span> <span class="nav-text">mongoDB集成spring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性文件"><span class="nav-number">3.</span> <span class="nav-text">属性文件</span></a></li></ol></div>
             
 
           </div>
