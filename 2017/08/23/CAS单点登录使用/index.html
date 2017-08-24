@@ -1,0 +1,1047 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="CAS简介CAS架构图  CAS server 和CAS client 是构成CAS系统架构的两个物理组件，他们之间通过多种协议来通信   CAS serverCAS server 的主要作用是通过分发ticket并使之生效来对用户进行认证并授权用户访问CAS认可的服务，通常这些服务就是指CAS client，当用户成功登录 server发放一个已授权的ticket 给用户（TGT），此时一个ss">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAS单点登录使用">
+<meta property="og:url" content="http://lilixin.top/2017/08/23/CAS单点登录使用/index.html">
+<meta property="og:site_name" content="轻舞飞扬">
+<meta property="og:description" content="CAS简介CAS架构图  CAS server 和CAS client 是构成CAS系统架构的两个物理组件，他们之间通过多种协议来通信   CAS serverCAS server 的主要作用是通过分发ticket并使之生效来对用户进行认证并授权用户访问CAS认可的服务，通常这些服务就是指CAS client，当用户成功登录 server发放一个已授权的ticket 给用户（TGT），此时一个ss">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/1a090a9a593dce54486e4e83c838ba98.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/8f680627ff96f5c635f360a3c5f57abe.jpg">
+<meta property="og:updated_time" content="2017-08-24T09:57:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CAS单点登录使用">
+<meta name="twitter:description" content="CAS简介CAS架构图  CAS server 和CAS client 是构成CAS系统架构的两个物理组件，他们之间通过多种协议来通信   CAS serverCAS server 的主要作用是通过分发ticket并使之生效来对用户进行认证并授权用户访问CAS认可的服务，通常这些服务就是指CAS client，当用户成功登录 server发放一个已授权的ticket 给用户（TGT），此时一个ss">
+<meta name="twitter:image" content="http://ou1kontjz.bkt.clouddn.com/1a090a9a593dce54486e4e83c838ba98.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lilixin.top/2017/08/23/CAS单点登录使用/"/>
+
+
+
+
+
+  <title> CAS单点登录使用 | 轻舞飞扬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轻舞飞扬</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lilixin.top/2017/08/23/CAS单点登录使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lilixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轻舞飞扬">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CAS单点登录使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T17:03:51+08:00">
+                2017-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/23/CAS单点登录使用/" class="leancloud_visitors" data-flag-title="CAS单点登录使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+         <span class="post-time">
+       &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">字数统计:</span>
+           <span class="post-count">1,934(字)</span>
+           
+         </span>
+      
+      <span class="post-time">
+       &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">阅读时长:</span>
+           <span class="post-count">9(分)</span>
+           
+         </span>
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CAS简介"><a href="#CAS简介" class="headerlink" title="CAS简介"></a>CAS简介</h1><h1 id="CAS架构图"><a href="#CAS架构图" class="headerlink" title="CAS架构图"></a>CAS架构图</h1><p><img src="http://ou1kontjz.bkt.clouddn.com/1a090a9a593dce54486e4e83c838ba98.jpg" alt=""></p>
+<blockquote>
+<p>CAS server 和CAS client 是构成CAS系统架构的两个物理组件，他们之间通过多种协议来通信 </p>
+</blockquote>
+<h2 id="CAS-server"><a href="#CAS-server" class="headerlink" title="CAS server"></a>CAS server</h2><p>CAS server 的主要作用是通过分发ticket并使之生效来对用户进行认证并授权用户访问CAS认可的服务，通常这些服务就是指CAS client，当用户成功登录 server发放一个已授权的ticket 给用户（TGT），此时一个sso session就被创建了。</p>
+<h2 id="CAS-client"><a href="#CAS-client" class="headerlink" title="CAS client"></a>CAS client</h2><p>通常CAS client有两层含义，一，CAS client 可以是任何被CAS认可的应用，二 ，CAS client也可以是能与各种软件平台或者应用集成的软件包</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>到官网下载CAS源码 <a href="https://www.apereo.org/projects/cas/download-cas" target="_blank" rel="external">https://www.apereo.org/projects/cas/download-cas</a><br>本文使用v3.5.2版本 现在比较新的版本需要自己用gradle打包</p>
+<p>下载tomcat  本文使用tomcat8版本</p>
+<p>jdk使用1.8版本</p>
+<h1 id="部署-CAS-Server"><a href="#部署-CAS-Server" class="headerlink" title="部署 CAS Server"></a>部署 CAS Server</h1><h2 id="配置Tomcat使用Https协议"><a href="#配置Tomcat使用Https协议" class="headerlink" title="配置Tomcat使用Https协议"></a>配置Tomcat使用Https协议</h2><h3 id="创建证书"><a href="#创建证书" class="headerlink" title="创建证书"></a>创建证书</h3><p>证书是单点登录认证系统中很重要的一把钥匙，客户端于服务器的交互安全靠的就是证书；本文使用jdk自带的keytool生成，真正在产品环境中使用肯定要去证书提供商去购买，证书认证一般都是由VeriSign认证，中文官方网站：<a href="http://www.verisign.com/cn/" target="_blank" rel="external">http://www.verisign.com/cn/</a></p>
+<pre><code>$ keytool -genkey -alias jason -keyalg RSA -keystore /Users/lilixin/programming/jasonssokey    
+</code></pre><p><img src="http://ou1kontjz.bkt.clouddn.com/8f680627ff96f5c635f360a3c5f57abe.jpg" alt=""></p>
+<h3 id="添加hosts"><a href="#添加hosts" class="headerlink" title="添加hosts"></a>添加hosts</h3><p>在/etc/hosts(linux系统)中加入127.0.0.1  sso.jason-li.cn</p>
+<h3 id="导出证书"><a href="#导出证书" class="headerlink" title="导出证书"></a>导出证书</h3><pre><code>keytool -export -file /Users/lilixin/programming/jasonssokey.crt -alias jason -keystore /Users/lilixin/programming/jasonssokey
+</code></pre><p>至此导出证书完成，可以分发给应用的JDK使用了，接下来讲解客户端的JVM怎么导入证书</p>
+<h3 id="为客户端JVM导入证书"><a href="#为客户端JVM导入证书" class="headerlink" title="为客户端JVM导入证书"></a>为客户端JVM导入证书</h3><pre><code>keytool -import -keystore /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/jre/lib/security/cacerts -file /Users/lilixin/programming/jasonssokey  -alias jason
+</code></pre><p>过程中可能遇到如下错误，请重命名/…./security/cacerts</p>
+<pre><code>keytool 错误: java.io.IOException: Keystore was tampered with, or password was incorrect
+</code></pre><h3 id="应用证书到Web服务器"><a href="#应用证书到Web服务器" class="headerlink" title="应用证书到Web服务器"></a>应用证书到Web服务器</h3><p>启用Web服务器(Tomcat)的SSL，也就是HTTPS加密协议<br>打开tomcat目录的conf/server.xml文件，开启83和87行的注释代码，并设置keystoreFile、keystorePass,修改后结果如下，请注意属性值区分大小写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;Connector</div><div class="line">        port=&quot;8443&quot;</div><div class="line">        protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot;</div><div class="line">        SSLEnabled=&quot;true&quot;</div><div class="line">        maxThreads=&quot;150&quot;</div><div class="line">        scheme=&quot;https&quot;</div><div class="line">        secure=&quot;true&quot;</div><div class="line">        clientAuth=&quot;false&quot;</div><div class="line">        sslProtocol=&quot;TLS&quot;</div><div class="line">        keystoreFile=&quot;/Users/lilixin/programming/jasonssokey&quot;</div><div class="line">        keystorePass=&quot;adwars&quot;</div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>浏览器打开 <a href="https://sso.jason-li.cn:8443/" target="_blank" rel="external">https://sso.jason-li.cn:8443/</a> 可访问到tomcat页面既成功</p>
+<h2 id="启动CAS-server"><a href="#启动CAS-server" class="headerlink" title="启动CAS server"></a>启动CAS server</h2><p>把下栽来的CAS源码中 modules目录中的cas-server-webapp-3.5.2.war 重命名后放入tomcat的webapps目录中 启动tomcat<br>访问<a href="https://sso.jason-li.cn:8443/cas" target="_blank" rel="external">https://sso.jason-li.cn:8443/cas</a> 如果出现正常CAS登录页面则部署成功</p>
+<h1 id="扩展认证接口"><a href="#扩展认证接口" class="headerlink" title="扩展认证接口"></a>扩展认证接口</h1><p>由于缺省的实现仅能用于测试，我们还需要自己扩展认证接口</p>
+<h2 id="扩展-AuthenticationHandler"><a href="#扩展-AuthenticationHandler" class="headerlink" title="扩展 AuthenticationHandler"></a>扩展 AuthenticationHandler</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public interface AuthenticationHandler &#123;</div><div class="line">    /**</div><div class="line">     * Method to determine if the credentials supplied are valid.</div><div class="line">     * @param credentials The credentials to validate.</div><div class="line">     * @return true if valid, return false otherwise.</div><div class="line">     * @throws AuthenticationException An AuthenticationException can contain</div><div class="line">     * details about why a particular authentication request failed.</div><div class="line">     */</div><div class="line">    boolean authenticate(Credentials credentials) throws AuthenticationException;</div><div class="line">/**</div><div class="line">     * Method to check if the handler knows how to handle the credentials</div><div class="line">     * provided. It may be a simple check of the Credentials class or something</div><div class="line">     * more complicated such as scanning the information contained in the</div><div class="line">     * Credentials object. </div><div class="line">     * @param credentials The credentials to check.</div><div class="line">     * @return true if the handler supports the Credentials, false othewrise.</div><div class="line">     */</div><div class="line">    boolean supports(Credentials credentials);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过源码可以看到AuthenticationHandler主要有两个方法 supports ()方法用于检查所给的包含认证信息的Credentials 是否受当前 AuthenticationHandler 支持；而 authenticate() 方法则担当验证认证信息的任务，这也是需要扩展的主要方法，根据情况与存储合法认证信息的介质进行交互，返回 boolean 类型的值，true 表示验证通过，false 表示验证失败。</p>
+<h1 id="JDBC-认证方法"><a href="#JDBC-认证方法" class="headerlink" title="JDBC 认证方法"></a>JDBC 认证方法</h1><p>通常我们会将用户信息保存在数据库中，所以采用jdbc认证方式</p>
+<h2 id="配置DataStore"><a href="#配置DataStore" class="headerlink" title="配置DataStore"></a>配置DataStore</h2><p>打开 /webapps/cas/WEB-INF/deployerConfigContext.xml添加一个新的 bean 标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;dataSource&quot;</div><div class="line">      class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;</div><div class="line">      p:driverClass=&quot;com.mysql.jdbc.Driver&quot;</div><div class="line">      p:jdbcUrl=&quot;jdbc:mysql://127.0.0.1:3306/ucenter?useUnicode=true&quot;</div><div class="line">      p:user=&quot;root&quot;</div><div class="line">      p:password=&quot;root&quot;</div><div class="line">      p:initialPoolSize=&quot;1&quot;</div><div class="line">      p:minPoolSize=&quot;1&quot;</div><div class="line">      p:maxPoolSize=&quot;3&quot;</div><div class="line">      p:maxIdleTimeExcessConnections=&quot;120&quot;</div><div class="line">      p:checkoutTimeout=&quot;10000&quot;</div><div class="line">      p:acquireIncrement=&quot;6&quot;</div><div class="line">      p:acquireRetryAttempts=&quot;5&quot;</div><div class="line">      p:acquireRetryDelay=&quot;2000&quot;</div><div class="line">      p:idleConnectionTestPeriod=&quot;30&quot;</div><div class="line">      p:preferredTestQuery=&quot;select 1&quot; /&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>记得添加名称空间 xmlns:p=”<a href="http://www.springframework.org/schema/p" target="_blank" rel="external">http://www.springframework.org/schema/p</a>“</p>
+</blockquote>
+<h2 id="配置-AuthenticationHandler"><a href="#配置-AuthenticationHandler" class="headerlink" title="配置 AuthenticationHandler"></a>配置 AuthenticationHandler</h2><blockquote>
+<p>在 cas-server-support-jdbc-3.1.1.jar 包中，提供了 3 个基于 JDBC 的 AuthenticationHandler，分别为 BindModeSearchDatabaseAuthenticationHandler, QueryDatabaseAuthenticationHandler, SearchModeSearchDatabaseAuthenticationHandler。其中 BindModeSearchDatabaseAuthenticationHandler 是用所给的用户名和密码去建立数据库连接，根据连接建立是否成功来判断验证成功与否；QueryDatabaseAuthenticationHandler 通过配置一个 SQL 语句查出密码，与所给密码匹配；SearchModeSearchDatabaseAuthenticationHandler 通过配置存放用户验证信息的表、用户名字段和密码字段，构造查询语句来验证。</p>
+</blockquote>
+<p>我们这里选用QueryDatabaseAuthenticationHandler</p>
+<p>CAS4.2.1默认使用的是一个简单的acceptUsersAuthenticationHandler,找到他然后替换掉他</p>
+<figure class="highlight plain"><figcaption><span>name="acceptUsersAuthenticationHandler" alias="primaryAuthenticationHandler"</span><a href="/>```">link</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">使用我们自己定义的</div></pre></td></tr></table></figure>
+<bean id="primaryAuthenticationHandler" class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler" p:datasource-ref="dataSource" p:passwordencoder-ref="MD5PasswordEncoder" p:sql="SELECT password FROM uc_members WHERE username=?"><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里我们采用MD5加密 MD5PasswordEncoder是对具体实现的引用</div></pre></td></tr></table></figure><br><br>    <bean id="MD5PasswordEncoder" class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder"><br>        <constructor-arg value="MD5"><br>    </constructor-arg></bean><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">## 定制返回属性</div><div class="line">&gt; 注释掉原来的attributeRepository和attrRepoBackingMap</div></pre></td></tr></table></figure><br><br><bean id="attributeRepository" class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao"><br>        <constructor-arg index="0" ref="dataSource"><br>        <constructor-arg index="1"><br>            <value><br>                select username,email,myid,EmployeeID,mobile,EmployType,Department,Gender  from uc_members where username=?<br>            </value><br>        </constructor-arg><br>        <property name="queryAttributeMapping"><br>            <map><br>                <entry key="username" value="username"><br>            </entry></map><br>        </property><br><br>        <property name="resultAttributeMapping"><br>            <map><br>                <entry key="email" value="email"><br>                <entry key="myid" value="myid"><br>                <entry key="EmployeeID" value="EmployeeID"><br>                <entry key="EmployType" value="EmployType"><br>                <entry key="Department" value="Department"><br>            </entry></entry></entry></entry></entry></map><br>        </property><br>    </constructor-arg></bean>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 添加相应jar包</div><div class="line">- cas-server-support-jdbc.4.2.1.jar</div><div class="line">- mchange-commons-java-0.2.10.jar</div><div class="line">- c3p0-0.9.5.1.jar</div><div class="line">- commons-collections-3.2.jar</div><div class="line">- commons-dbcp-1.2.1.jar</div><div class="line">- commons-pool-1.3.jar</div><div class="line"></div><div class="line">把相应jar包放入/webapps/cas/WEB-INF/lib下面</div><div class="line"></div><div class="line"></div><div class="line">## 最后的配置文件</div></pre></td></tr></table></figure>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br><!--
+| deployerConfigContext.xml centralizes into one file some of the declarative configuration that
+| all CAS deployers will need to modify.
+|
+| This file declares some of the Spring-managed JavaBeans that make up a CAS deployment.
+| The beans declared in this file are instantiated at context initialization time by the Spring
+| ContextLoaderListener declared in web.xml.  It finds this file because this
+| file is among those declared in the context parameter "contextConfigLocation".
+|
+| By far the most common change you will need to make in this file is to change the last bean
+| declaration to replace the default authentication handler with
+| one implementing your approach for authenticating usernames and passwords.
++--></p>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p" xmlns:c="http://www.springframework.org/schema/c" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util" xmlns:sec="http://www.springframework.org/schema/security" xsi:schemalocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+<pre><code>&lt;util:map id=&quot;authenticationHandlersResolvers&quot;&gt;
+    &lt;entry key-ref=&quot;proxyAuthenticationHandler&quot; value-ref=&quot;proxyPrincipalResolver&quot; /&gt;
+    &lt;entry key-ref=&quot;primaryAuthenticationHandler&quot; value-ref=&quot;primaryPrincipalResolver&quot; /&gt;
+&lt;/util:map&gt;
+
+&lt;util:list id=&quot;authenticationMetadataPopulators&quot;&gt;
+    &lt;ref bean=&quot;successfulHandlerMetaDataPopulator&quot; /&gt;
+    &lt;ref bean=&quot;rememberMeAuthenticationMetaDataPopulator&quot; /&gt;
+&lt;/util:list&gt;
+
+
+&lt;bean  id=&quot;MD5PasswordEncoder&quot; class=&quot;org.jasig.cas.authentication.handler.DefaultPasswordEncoder&quot; &gt;
+    &lt;constructor-arg  value=&quot;MD5&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;primaryAuthenticationHandler&quot;
+       class=&quot;org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler&quot;
+       p:dataSource-ref=&quot;dataSource&quot;
+       p:passwordEncoder-ref=&quot;MD5PasswordEncoder&quot;
+       p:sql=&quot;SELECT password FROM uc_members WHERE username=?&quot; /&gt;
+
+&lt;alias name=&quot;dataSource&quot; alias=&quot;queryEncodeDatabaseDataSource&quot; /&gt;
+
+&lt;bean id=&quot;dataSource&quot;
+  class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;
+  p:driverClass=&quot;com.mysql.jdbc.Driver&quot;
+  p:jdbcUrl=&quot;jdbc:mysql://127.0.0.1:3306/ucenter?useUnicode=true&quot;
+  p:user=&quot;root&quot;
+  p:password=&quot;root&quot;
+  p:initialPoolSize=&quot;1&quot;
+  p:minPoolSize=&quot;1&quot;
+  p:maxPoolSize=&quot;3&quot;
+  p:maxIdleTimeExcessConnections=&quot;120&quot;
+  p:checkoutTimeout=&quot;10000&quot;
+  p:acquireIncrement=&quot;6&quot;
+  p:acquireRetryAttempts=&quot;5&quot;
+  p:acquireRetryDelay=&quot;2000&quot;
+  p:idleConnectionTestPeriod=&quot;30&quot;
+  p:preferredTestQuery=&quot;select 1&quot; /&gt;
+
+
+
+&lt;!--&lt;alias name=&quot;acceptUsersAuthenticationHandler&quot; alias=&quot;primaryAuthenticationHandler&quot; /&gt; --&gt;
+&lt;alias name=&quot;personDirectoryPrincipalResolver&quot; alias=&quot;primaryPrincipalResolver&quot; /&gt;
+&lt;!-- 定制返回属性 --&gt;
+&lt;!--
+&lt;bean id=&quot;attributeRepository&quot; class=&quot;org.jasig.services.persondir.support.NamedStubPersonAttributeDao&quot;
+      p:backingMap-ref=&quot;attrRepoBackingMap&quot; /&gt;
+&lt;util:map id=&quot;attrRepoBackingMap&quot;&gt;
+    &lt;entry key=&quot;uid&quot; value=&quot;uid&quot; /&gt;
+    &lt;entry key=&quot;eduPersonAffiliation&quot; value=&quot;eduPersonAffiliation&quot; /&gt;
+    &lt;entry key=&quot;groupMembership&quot; value=&quot;groupMembership&quot; /&gt;
+    &lt;entry&gt;
+        &lt;key&gt;&lt;value&gt;memberOf&lt;/value&gt;&lt;/key&gt;
+        &lt;list&gt;
+            &lt;value&gt;faculty&lt;/value&gt;
+            &lt;value&gt;staff&lt;/value&gt;
+            &lt;value&gt;org&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/entry&gt;
+&lt;/util:map&gt;--&gt;
+
+&lt;bean id=&quot;attributeRepository&quot; class=&quot;org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao&quot;&gt;
+    &lt;constructor-arg index=&quot;0&quot; ref=&quot;dataSource&quot; /&gt;
+    &lt;constructor-arg index=&quot;1&quot;&gt;
+        &lt;value&gt;
+            select username,email,myid,EmployeeID,mobile,EmployType,Department,Gender  from uc_members where username=?
+        &lt;/value&gt;
+    &lt;/constructor-arg&gt;
+    &lt;property name=&quot;queryAttributeMapping&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;username&quot; value=&quot;username&quot;/&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+
+    &lt;property name=&quot;resultAttributeMapping&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;email&quot; value=&quot;email&quot; /&gt;
+            &lt;entry key=&quot;myid&quot; value=&quot;myid&quot; /&gt;
+            &lt;entry key=&quot;EmployeeID&quot; value=&quot;EmployeeID&quot; /&gt;
+            &lt;entry key=&quot;EmployType&quot; value=&quot;EmployType&quot; /&gt;
+            &lt;entry key=&quot;Department&quot; value=&quot;Department&quot; /&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!-- 定制返回属性 end --&gt;
+&lt;alias name=&quot;serviceThemeResolver&quot; alias=&quot;themeResolver&quot; /&gt;
+
+&lt;alias name=&quot;jsonServiceRegistryDao&quot; alias=&quot;serviceRegistryDao&quot; /&gt;
+
+&lt;alias name=&quot;defaultTicketRegistry&quot; alias=&quot;ticketRegistry&quot; /&gt;
+
+&lt;alias name=&quot;ticketGrantingTicketExpirationPolicy&quot; alias=&quot;grantingTicketExpirationPolicy&quot; /&gt;
+&lt;alias name=&quot;multiTimeUseOrTimeoutExpirationPolicy&quot; alias=&quot;serviceTicketExpirationPolicy&quot; /&gt;
+
+&lt;alias name=&quot;anyAuthenticationPolicy&quot; alias=&quot;authenticationPolicy&quot; /&gt;
+&lt;alias name=&quot;acceptAnyAuthenticationPolicyFactory&quot; alias=&quot;authenticationPolicyFactory&quot; /&gt;
+
+&lt;bean id=&quot;auditTrailManager&quot;
+      class=&quot;org.jasig.inspektr.audit.support.Slf4jLoggingAuditTrailManager&quot;
+      p:entrySeparator=&quot;${cas.audit.singleline.separator:|}&quot;
+      p:useSingleLine=&quot;${cas.audit.singleline:false}&quot;/&gt;
+
+&lt;alias name=&quot;neverThrottle&quot; alias=&quot;authenticationThrottle&quot; /&gt;
+
+&lt;util:list id=&quot;monitorsList&quot;&gt;
+    &lt;ref bean=&quot;memoryMonitor&quot; /&gt;
+    &lt;ref bean=&quot;sessionMonitor&quot; /&gt;
+&lt;/util:list&gt;
+
+&lt;alias name=&quot;defaultPrincipalFactory&quot; alias=&quot;principalFactory&quot; /&gt;
+&lt;alias name=&quot;defaultAuthenticationTransactionManager&quot; alias=&quot;authenticationTransactionManager&quot; /&gt;
+&lt;alias name=&quot;defaultPrincipalElectionStrategy&quot; alias=&quot;principalElectionStrategy&quot; /&gt;
+&lt;alias name=&quot;tgcCipherExecutor&quot; alias=&quot;defaultCookieCipherExecutor&quot; /&gt;
+</code></pre><p></p></beans><br>```<p></p>
+<h2 id="替换CAS-Server-界面"><a href="#替换CAS-Server-界面" class="headerlink" title="替换CAS Server 界面"></a>替换CAS Server 界面</h2><blockquote>
+<p>页面在目录 cas/WEB-INF/view/jsp/default下</p>
+</blockquote>
+<p>有4个页面是必须的：</p>
+<ul>
+<li>casConfirmView.jsp: 当用户选择了“ warn ”时会看到的确认界面</li>
+<li>casGenericSuccess.jsp: 在用户成功通过认证而没有目的Service时会看到的界面</li>
+<li>casLoginView.jsp: 当需要用户提供认证信息时会出现的界面</li>
+<li>casLogoutView.jsp: 当用户结束 CAS 单点登录系统会话时出现的界面</li>
+</ul>
+<p>重新启动tomcat  浏览器打开<a href="http://sso.jason-li.cn:8080/cas/login" target="_blank" rel="external">http://sso.jason-li.cn:8080/cas/login</a> 从数据库中找到一个账号 登录  OK 成功 进行下一步</p>
+<h1 id="部署客户端应用"><a href="#部署客户端应用" class="headerlink" title="部署客户端应用"></a>部署客户端应用</h1><h2 id="与CAS-Server建立信任关系"><a href="#与CAS-Server建立信任关系" class="headerlink" title="与CAS Server建立信任关系"></a>与CAS Server建立信任关系</h2><h2 id="引入CAS-client-jar包"><a href="#引入CAS-client-jar包" class="headerlink" title="引入CAS client jar包"></a>引入CAS client jar包</h2><h2 id="配置CAS-filter"><a href="#配置CAS-filter" class="headerlink" title="配置CAS filter"></a>配置CAS filter</h2><h2 id="获取登录信息"><a href="#获取登录信息" class="headerlink" title="获取登录信息"></a>获取登录信息</h2><h2 id="CAS-Server集群session共享"><a href="#CAS-Server集群session共享" class="headerlink" title="CAS Server集群session共享"></a>CAS Server集群session共享</h2><h2 id="客户端集群session共享"><a href="#客户端集群session共享" class="headerlink" title="客户端集群session共享"></a>客户端集群session共享</h2></bean>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>关注我的微信，共同分享与讨论！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="lilixin WeChat Pay"/>
+          <p>关注我</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/16/百邦文件存储服务接口文档v1.0/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDEzMi82Njg3"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lilixin" />
+          <p class="site-author-name" itemprop="name">lilixin</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lilixin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CAS简介"><span class="nav-number">1.</span> <span class="nav-text">CAS简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CAS架构图"><span class="nav-number">2.</span> <span class="nav-text">CAS架构图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS-server"><span class="nav-number">2.1.</span> <span class="nav-text">CAS server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS-client"><span class="nav-number">2.2.</span> <span class="nav-text">CAS client</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署-CAS-Server"><span class="nav-number">4.</span> <span class="nav-text">部署 CAS Server</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Tomcat使用Https协议"><span class="nav-number">4.1.</span> <span class="nav-text">配置Tomcat使用Https协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建证书"><span class="nav-number">4.1.1.</span> <span class="nav-text">创建证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加hosts"><span class="nav-number">4.1.2.</span> <span class="nav-text">添加hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出证书"><span class="nav-number">4.1.3.</span> <span class="nav-text">导出证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为客户端JVM导入证书"><span class="nav-number">4.1.4.</span> <span class="nav-text">为客户端JVM导入证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用证书到Web服务器"><span class="nav-number">4.1.5.</span> <span class="nav-text">应用证书到Web服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">4.1.6.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动CAS-server"><span class="nav-number">4.2.</span> <span class="nav-text">启动CAS server</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展认证接口"><span class="nav-number">5.</span> <span class="nav-text">扩展认证接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展-AuthenticationHandler"><span class="nav-number">5.1.</span> <span class="nav-text">扩展 AuthenticationHandler</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JDBC-认证方法"><span class="nav-number">6.</span> <span class="nav-text">JDBC 认证方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置DataStore"><span class="nav-number">6.1.</span> <span class="nav-text">配置DataStore</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-AuthenticationHandler"><span class="nav-number">6.2.</span> <span class="nav-text">配置 AuthenticationHandler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换CAS-Server-界面"><span class="nav-number">6.3.</span> <span class="nav-text">替换CAS Server 界面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署客户端应用"><span class="nav-number">7.</span> <span class="nav-text">部署客户端应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与CAS-Server建立信任关系"><span class="nav-number">7.1.</span> <span class="nav-text">与CAS Server建立信任关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入CAS-client-jar包"><span class="nav-number">7.2.</span> <span class="nav-text">引入CAS client jar包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置CAS-filter"><span class="nav-number">7.3.</span> <span class="nav-text">配置CAS filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取登录信息"><span class="nav-number">7.4.</span> <span class="nav-text">获取登录信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS-Server集群session共享"><span class="nav-number">7.5.</span> <span class="nav-text">CAS Server集群session共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端集群session共享"><span class="nav-number">7.6.</span> <span class="nav-text">客户端集群session共享</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lilixin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dD0g23R5hldCatu6KgP76TD8-gzGzoHsz", "BvAChlBunEJ9918MkKRBw1H1");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
