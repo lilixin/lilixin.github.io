@@ -1,0 +1,948 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="《转载-分布式任务调度平台XXL-JOB》 简介概述XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。 特性 简单：支持通过Web页面对任务进行CRUD操作，操作简单，一分钟上手； 动态：支持动态修改任务状态、暂停/恢复任务，以及终止运行中任务，即时生效； 调度中心HA（中心式）：调度采用中心式设计，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用xxl-job搭建可视化任务管理平台">
+<meta property="og:url" content="http://lilixin.top/2017/08/28/使用xxl-job搭建可视化任务管理平台/index.html">
+<meta property="og:site_name" content="轻舞飞扬">
+<meta property="og:description" content="《转载-分布式任务调度平台XXL-JOB》 简介概述XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。 特性 简单：支持通过Web页面对任务进行CRUD操作，操作简单，一分钟上手； 动态：支持动态修改任务状态、暂停/恢复任务，以及终止运行中任务，即时生效； 调度中心HA（中心式）：调度采用中心式设计，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/48bcea90b42d00216c8dee414ae5a665.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/2ed6665e7adf6aa2c26e4126bef2eb80.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/7dd8ea93f69aee8848a6dfcf20a8142b.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/b3107b11267625ffb795c99a2007f404.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/29fe633bccca75cee65bc40ed5fba3e1.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/ef9ac560de2fd27563e10f28cef93b83.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/a5785bc66a476042ac355123c066e989.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/b21c23f33271931a30260776c1bdac8f.jpg">
+<meta property="og:image" content="http://ou1kontjz.bkt.clouddn.com/7af3aea45573a2cec87ce6d96a3d5e10.jpg">
+<meta property="og:updated_time" content="2017-08-28T10:46:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用xxl-job搭建可视化任务管理平台">
+<meta name="twitter:description" content="《转载-分布式任务调度平台XXL-JOB》 简介概述XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。 特性 简单：支持通过Web页面对任务进行CRUD操作，操作简单，一分钟上手； 动态：支持动态修改任务状态、暂停/恢复任务，以及终止运行中任务，即时生效； 调度中心HA（中心式）：调度采用中心式设计，">
+<meta name="twitter:image" content="http://ou1kontjz.bkt.clouddn.com/48bcea90b42d00216c8dee414ae5a665.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lilixin.top/2017/08/28/使用xxl-job搭建可视化任务管理平台/"/>
+
+
+
+
+
+  <title> 使用xxl-job搭建可视化任务管理平台 | 轻舞飞扬 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轻舞飞扬</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lilixin.top/2017/08/28/使用xxl-job搭建可视化任务管理平台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lilixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轻舞飞扬">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用xxl-job搭建可视化任务管理平台
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T18:25:23+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/28/使用xxl-job搭建可视化任务管理平台/" class="leancloud_visitors" data-flag-title="使用xxl-job搭建可视化任务管理平台">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+         <span class="post-time">
+       &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">字数统计:</span>
+           <span class="post-count">2,832(字)</span>
+           
+         </span>
+      
+      <span class="post-time">
+       &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">阅读时长:</span>
+           <span class="post-count">10(分)</span>
+           
+         </span>
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>《转载-分布式任务调度平台XXL-JOB》</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>XXL-JOB是一个轻量级分布式任务调度框架，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>简单：支持通过Web页面对任务进行CRUD操作，操作简单，一分钟上手；</li>
+<li>动态：支持动态修改任务状态、暂停/恢复任务，以及终止运行中任务，即时生效；</li>
+<li>调度中心HA（中心式）：调度采用中心式设计，“调度中心”基于集群Quartz实现，可保证调度中心HA；</li>
+<li>执行器HA（分布式）：任务分布式执行，任务”执行器”支持集群部署，可保证任务执行HA；</li>
+<li>任务Failover：执行器集群部署时，任务路由策略选择”故障转移”情况下调度失败时将会平滑切换执行器进行Failover；</li>
+<li>一致性：“调度中心”通过DB锁保证集群分布式调度的一致性, 一次任务调度只会触发一次执行；</li>
+<li>自定义任务参数：支持在线配置调度任务入参，即时生效；</li>
+<li>调度线程池：调度系统多线程触发调度运行，确保调度精确执行，不被堵塞；</li>
+<li>弹性扩容缩容：一旦有新执行器机器上线或者下线，下次调度时将会重新分配任务；</li>
+<li>邮件报警：任务失败时支持邮件报警，支持配置多邮件地址群发报警邮件；</li>
+<li>状态监控：支持实时监控任务进度；</li>
+<li>Rolling执行日志：支持在线查看调度结果，并且支持以Rolling方式实时查看执行器输出的完整的执行日志；</li>
+<li>GLUE：提供Web IDE，支持在线开发任务逻辑代码，动态发布，实时编译生效，省略部署上线的过程。支持30个版本的历史版本回溯。</li>
+<li>数据加密：调度中心和执行器之间的通讯进行数据加密，提升调度信息安全性；</li>
+<li>任务依赖：支持配置子任务依赖，当父任务执行结束且执行成功后将会主动触发一次子任务的执行, 多个子任务用逗号分隔；</li>
+<li>推送maven中央仓库: 将会把最新稳定版推送到maven中央仓库, 方便用户接入和使用;</li>
+<li>任务注册: 执行器会周期性自动注册任务, 调度中心将会自动发现注册的任务并触发执行。同时，也支持手动录入执行器地址；</li>
+<li>路由策略：执行器集群部署时提供丰富的路由策略，包括：第一个、最后一个、轮询、随机、一致性HASH、最不经常使用、最近最久未使用、故障转移；</li>
+<li>运行报表：支持实时查看运行数据，如任务数量、调度次数、执行器数量等；以及调度报表，如调度日期分布图，调度成功分布图等；</li>
+<li>脚本任务：支持以GLUE模式开发和运行脚本任务，包括Shell、Python等类型脚本;</li>
+<li>阻塞处理策略：调度过于密集执行器来不及处理时的处理策略，策略包括：单机串行（默认）、丢弃后续调度、覆盖之前调度；</li>
+<li>失败处理策略；调度失败时的处理策略，策略包括：失败告警（默认）、失败重试；</li>
+</ul>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="https://github.com/xuxueli/xxl-job/releases" target="_blank" rel="external">https://github.com/xuxueli/xxl-job/releases</a></p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>JDK：1.7+<br>Servlet/JSP Spec：3.1/2.3<br>Tomcat：8.5.x/Jetty9.2<br>Spring-boot：1.3.8/Spring4.x<br>Mysql：5.6+<br>Maven：3+    </p>
+<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><h3 id="初始化“调度数据库”"><a href="#初始化“调度数据库”" class="headerlink" title="初始化“调度数据库”"></a>初始化“调度数据库”</h3><p>请下载项目源码并解压，获取 “调度数据库初始化SQL脚本”(脚本文件为: 源码解压根目录\xxl-job\db\tables_xxl_job.sql) 并执行即可。正常情况下,应该生成16张表;</p>
+<p>调度中心支持集群部署，集群情况下各节点务必连接同一个mysql实例;</p>
+<p>如果mysql做主从,调度中心集群节点务必强制走主库;</p>
+<h3 id="编译源码"><a href="#编译源码" class="headerlink" title="编译源码"></a>编译源码</h3><p><img src="http://ou1kontjz.bkt.clouddn.com/48bcea90b42d00216c8dee414ae5a665.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xxl-job-admin：调度中心</div><div class="line">xxl-job-core：公共依赖</div><div class="line">xxl-job-executor-example：执行器Example（可直接使用执行器Example，也可以将现有项目改造成执行器使用）</div><div class="line">xxl-job-executor-springboot-example：执行器Example，springboot版本</div></pre></td></tr></table></figure>
+<h3 id="配置部署“调度中心”"><a href="#配置部署“调度中心”" class="headerlink" title="配置部署“调度中心”"></a>配置部署“调度中心”</h3><blockquote>
+<p>调度中心项目：xxl-job-admin<br>作用：统一管理任务调度平台上调度任务，负责触发调度执行。</p>
+</blockquote>
+<h4 id="调度中心配置"><a href="#调度中心配置" class="headerlink" title="调度中心配置"></a>调度中心配置</h4><p><img src="http://ou1kontjz.bkt.clouddn.com/2ed6665e7adf6aa2c26e4126bef2eb80.jpg" alt=""></p>
+<h4 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h4><p>如果已经正确进行上述配置，可将项目编译打war包并部署到tomcat中。<br>访问链接：<a href="http://localhost:8080/xxl-job-admin/" target="_blank" rel="external">http://localhost:8080/xxl-job-admin/</a> ，登录后运行界面如下图所示<br><img src="http://ou1kontjz.bkt.clouddn.com/7dd8ea93f69aee8848a6dfcf20a8142b.jpg" alt=""></p>
+<h3 id="配置部署“执行器项目”"><a href="#配置部署“执行器项目”" class="headerlink" title="配置部署“执行器项目”"></a>配置部署“执行器项目”</h3><blockquote>
+<p>“执行器”项目：xxl-job-executor-example (如新建执行器项目，可参考该Example执行器项目的配置步骤；)<br>作用：负责接收“调度中心”的调度并执行；</p>
+</blockquote>
+<h4 id="maven依赖"><a href="#maven依赖" class="headerlink" title="maven依赖"></a>maven依赖</h4><p>确认pom文件中引入了 “xxl-job-core” 的maven依赖；</p>
+<h4 id="执行器配置"><a href="#执行器配置" class="headerlink" title="执行器配置"></a>执行器配置</h4><p><img src="http://ou1kontjz.bkt.clouddn.com/b3107b11267625ffb795c99a2007f404.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">### xxl-job admin address list：调度中心部署跟地址：如调度中心集群部署存在多个地址则用逗号分隔。执行器将会使用该地址进行&quot;执行器心跳注册&quot;和&quot;任务结果回调&quot;。</div><div class="line">xxl.job.admin.addresses=http://127.0.0.1:8080/xxl-job-admin</div><div class="line"></div><div class="line">### xxl-job executor address：执行器&quot;AppName&quot;和地址信息配置：AppName执行器心跳注册分组依据；地址信息用于&quot;调度中心请求并触发任务&quot;和&quot;执行器注册&quot;。执行器默认端口为9999，执行器IP默认为空表示自动获取IP，多网卡时可手动设置指定IP。单机部署多个执行器时，注意要配置不同执行器端口；</div><div class="line">xxl.job.executor.appname=xxl-job-executor-example</div><div class="line">xxl.job.executor.ip=</div><div class="line">xxl.job.executor.port=9999</div><div class="line"></div><div class="line">### xxl-job log path：执行器运行日志文件存储的磁盘位置</div><div class="line">xxl.job.executor.logpath=/data/applogs/xxl-job/jobhandler/</div></pre></td></tr></table></figure>
+<h4 id="执行器组件配置"><a href="#执行器组件配置" class="headerlink" title="执行器组件配置"></a>执行器组件配置</h4><p><img src="http://ou1kontjz.bkt.clouddn.com/29fe633bccca75cee65bc40ed5fba3e1.jpg" alt=""></p>
+<blockquote>
+<p>1、JobHandler 扫描路径：自动扫描容器中JobHandler；<br>2、执行器Excutor配置：执行器核心配置；</p>
+</blockquote>
+<h4 id="部署项目-1"><a href="#部署项目-1" class="headerlink" title="部署项目"></a>部署项目</h4><ul>
+<li>xxl-job-executor-example：项目编译打包成WAR包，并部署到tomcat中。</li>
+<li>xxl-job-executor-springboot-example：项目编译打包成springboot类型的可执行JAR包，命令启动即可；</li>
+</ul>
+<h3 id="开发第一个任务"><a href="#开发第一个任务" class="headerlink" title="开发第一个任务"></a>开发第一个任务</h3><h4 id="开发JobHandler"><a href="#开发JobHandler" class="headerlink" title="开发JobHandler"></a>开发JobHandler</h4><ul>
+<li>1、 新建一个继承com.xxl.job.core.handler.IJobHandler的Java类；</li>
+<li>2、 该类被Spring容器扫描为Bean实例，如加“@Service注解”；</li>
+<li><p>3、 添加 “@JobHander(value=”自定义jobhandler名称”)”注解，注解的value值为自定义的JobHandler名称，该名称对应的是调度中心新建任务的JobHandler属性的值。</p>
+<p><img src="http://ou1kontjz.bkt.clouddn.com/ef9ac560de2fd27563e10f28cef93b83.jpg" alt=""></p>
+</li>
+</ul>
+<h4 id="新建任务"><a href="#新建任务" class="headerlink" title="新建任务"></a>新建任务</h4><p><img src="http://ou1kontjz.bkt.clouddn.com/a5785bc66a476042ac355123c066e989.jpg" alt=""></p>
+<p><img src="http://ou1kontjz.bkt.clouddn.com/b21c23f33271931a30260776c1bdac8f.jpg" alt=""></p>
+<h4 id="配置属性详细说明"><a href="#配置属性详细说明" class="headerlink" title="配置属性详细说明"></a>配置属性详细说明</h4><ul>
+<li>执行器：任务的绑定的执行器，任务触发调度时将会自动发现注册成功的执行器, 实现任务自动发现功能; 另一方面也可以方便的进行任务分组。每个任务必须绑定一个执行器, 可在 “执行器管理” 进行设置;</li>
+<li>描述：任务的描述信息，便于任务管理；</li>
+<li>路由策略：当执行器集群部署时，执行器路由规则；<br>  FIRST（第一个）：固定选择第一个执行器；<br>  LAST（最后一个）：固定选择最后一个执行器；<br>  ROUND（轮询）：；<br>  RANDOM（随机）：随机选择在线的执行器；<br>  CONSISTENT_HASH（一致性HASH）：分组下机器地址相同，不同JOB均匀散列在不同机器上，保证分组下机器分配JOB平均；且每个JOB固定调度其中一台机器；<br>  LEAST_FREQUENTLY_USED（最不经常使用）：单个JOB对应的每个执行器，使用频率最低的优先被选举；<br>  LEAST_RECENTLY_USED（最近最久未使用）：单个JOB对应的每个执行器，最久为使用的优先被选举；<br>  FAILOVER（故障转移）：按照顺序依次进行心跳检测，第一个心跳检测成功的机器选定为目标执行器并发起调度；<br>  BUSYOVER（忙碌转移）：按照顺序依次进行空闲检测，第一个空闲检测成功的机器选定为目标执行器并发起调度；</li>
+<li>Cron：触发任务执行的Cron表达式；</li>
+<li>运行模式：<br>  BEAN模式：任务以JobHandler方式维护在执行器端；需要结合 “JobHandler” 属性匹配执行器中任务；<br>  GLUE模式(Java)：任务以源码方式维护在调度中心；该模式的任务实际上是一段继承自IJobHandler的Java类代码并 “groovy” 源码方式维护，它在执行器项目中运行，可使用@Resource/@Autowire注入执行器里中的其他服务；<br>  GLUE模式(Shell)：任务以源码方式维护在调度中心；该模式的任务实际上是一段 “shell” 脚本；<br>  GLUE模式(Python)：任务以源码方式维护在调度中心；该模式的任务实际上是一段 “python” 脚本；</li>
+<li>JobHandler：运行模式为 “BEAN模式” 时生效，对应执行器中新开发的JobHandler类“@JobHander”注解自定义的value值；</li>
+<li>子任务Key：每个任务都拥有一个唯一的任务Key(任务Key可以从任务列表获取)，当本任务执行结束并且执行成功时，将会触发子任务Key所对应的任务的一次主动调度。</li>
+<li>阻塞处理策略：调度过于密集执行器来不及处理时的处理策略；<br>  单机串行（默认）：调度请求进入单机执行器后，调度请求进入FIFO队列并以串行方式运行；<br>  丢弃后续调度：调度请求进入单机执行器后，发现执行器存在运行的调度任务，本次请求将会被丢弃并标记为失败；<br>  覆盖之前调度：调度请求进入单机执行器后，发现执行器存在运行的调度任务，将会终止运行中的调度任务并清空队列，然后运行本地调度任务；</li>
+<li>失败处理策略；调度失败时的处理策略；<br>  失败告警（默认）：调度失败时，将会触发失败报警，如发送报警邮件；<br>  失败重试：调度失败时，将会主动进行一次失败重试调度，重试调度后仍然失败将会触发一失败告警。注意当任务以failover方式路由时，每次失败重试将会触发新一轮路由。</li>
+<li>执行参数：任务执行所需的参数，多个参数时用逗号分隔，任务执行时将会把多个参数抓换成数组传入；</li>
+<li>报警邮件：任务调度失败时邮件通知的邮箱地址，支持配置多邮箱地址，配置多个邮箱地址时用逗号分隔；</li>
+<li>负责人：任务的负责人；</li>
+</ul>
+<h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="http://ou1kontjz.bkt.clouddn.com/7af3aea45573a2cec87ce6d96a3d5e10.jpg" alt=""></p>
+<h2 id="通讯模块剖析"><a href="#通讯模块剖析" class="headerlink" title="通讯模块剖析"></a>通讯模块剖析</h2><ul>
+<li>1、“调度中心”向“执行器”发送http调度请求: “执行器”中接收请求的服务，实际上是一台内嵌jetty服务器，默认端口9999;</li>
+<li>2、“执行器”执行任务逻辑；</li>
+<li>3、“执行器”http回调“调度中心”调度结果: “调度中心”中接收回调的服务，是针对执行器开放一套API服务;</li>
+</ul>
+<p>本文转载自简书：<a href="http://www.jianshu.com/p/4c2ffb78ebe7" target="_blank" rel="external">http://www.jianshu.com/p/4c2ffb78ebe7</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>关注我的微信，共同分享与讨论！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="lilixin WeChat Pay"/>
+          <p>关注我</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/23/CAS单点登录使用/" rel="next" title="CAS单点登录使用">
+                <i class="fa fa-chevron-left"></i> CAS单点登录使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDEzMi82Njg3"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lilixin" />
+          <p class="site-author-name" itemprop="name">lilixin</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lilixin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特性"><span class="nav-number">1.2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载"><span class="nav-number">1.3.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.4.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入门"><span class="nav-number">1.5.</span> <span class="nav-text">快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化“调度数据库”"><span class="nav-number">1.5.1.</span> <span class="nav-text">初始化“调度数据库”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译源码"><span class="nav-number">1.5.2.</span> <span class="nav-text">编译源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置部署“调度中心”"><span class="nav-number">1.5.3.</span> <span class="nav-text">配置部署“调度中心”</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调度中心配置"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">调度中心配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署项目"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">部署项目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置部署“执行器项目”"><span class="nav-number">1.5.4.</span> <span class="nav-text">配置部署“执行器项目”</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#maven依赖"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">maven依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行器配置"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">执行器配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行器组件配置"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">执行器组件配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署项目-1"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">部署项目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发第一个任务"><span class="nav-number">1.5.5.</span> <span class="nav-text">开发第一个任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开发JobHandler"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">开发JobHandler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建任务"><span class="nav-number">1.5.5.2.</span> <span class="nav-text">新建任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置属性详细说明"><span class="nav-number">1.5.5.3.</span> <span class="nav-text">配置属性详细说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构图"><span class="nav-number">1.6.</span> <span class="nav-text">架构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通讯模块剖析"><span class="nav-number">1.7.</span> <span class="nav-text">通讯模块剖析</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lilixin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dD0g23R5hldCatu6KgP76TD8-gzGzoHsz", "BvAChlBunEJ9918MkKRBw1H1");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
