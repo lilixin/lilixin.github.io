@@ -3,14 +3,14 @@
   
     
     <entry>
-      <title><![CDATA[分类测试]]></title>
-      <url>/2017/08/29/%E5%88%86%E7%B1%BB%E6%B5%8B%E8%AF%95/</url>
-      <content type="html"><![CDATA[<p>哈哈</p>
+      <title><![CDATA[a test]]></title>
+      <url>/2017/08/29/a-test/</url>
+      <content type="html"><![CDATA[<p> 哈哈</p>
 ]]></content>
       
         <categories>
             
-            <category> itech </category>
+            <category> ittech </category>
             
         </categories>
         
@@ -63,6 +63,12 @@
 </blockquote>
 ]]></content>
       
+        <categories>
+            
+            <category> ittech </category>
+            
+        </categories>
+        
         
     </entry>
     
