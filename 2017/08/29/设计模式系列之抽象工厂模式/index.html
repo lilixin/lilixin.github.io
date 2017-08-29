@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="轻舞飞扬">
 <meta property="og:description" content="简介工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则，所以需要抽象工厂模式 抽象工厂模式定义接口123public interface Sender &amp;#123;      public void Send();  &amp;#125; 两个实现类123456public class MailSender implements Sender">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-29T07:28:12.000Z">
+<meta property="og:updated_time" content="2017-08-29T07:30:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计模式系列之抽象工厂模式">
 <meta name="twitter:description" content="简介工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则，所以需要抽象工厂模式 抽象工厂模式定义接口123public interface Sender &amp;#123;      public void Send();  &amp;#125; 两个实现类123456public class MailSender implements Sender">
@@ -322,7 +322,7 @@
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">258(字)</span>
+           <span class="post-count">295(字)</span>
            
          </span>
       
@@ -362,6 +362,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendSmsFactory</span> <span class="keyword">implements</span> <span class="title">Provider</span></span>&#123;  </div><div class="line">  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </div><div class="line">        Provider provider = <span class="keyword">new</span> SendMailFactory();  </div><div class="line">        Sender sender = provider.produce();  </div><div class="line">        sender.Send();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实这个模式的好处就是，如果你现在想增加一个功能：发及时信息，则只需做一个实现类，实现Sender接口，同时做一个工厂类，实现Provider接口，无需去改动现成的代码。这样做，拓展性较好！</p>
+<p>个人觉得抽象工厂模式大比较大型的项目中使用更合适，小型项目使用会觉得比较繁琐！</p>
 
       
     </div>
@@ -423,6 +424,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/29/JDK动态代理实现原理/" rel="prev" title="JDK动态代理的实现及原理">
+                JDK动态代理的实现及原理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -496,7 +501,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
