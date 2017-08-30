@@ -110,9 +110,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'JV80G8SMH3',
+      apiKey: '369ede30ca256aa706e6450f0e017e9a',
+      indexName: 'blog',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -296,7 +296,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lilixin.top/2017/08/29/a-test/">
+    <link itemprop="mainEntityOfPage" href="http://lilixin.top/2017/08/30/设计模式系列之单例模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jason Li">
@@ -318,8 +318,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/29/a-test/" itemprop="url">
-                  a test
+                <a class="post-title-link" href="/2017/08/30/设计模式系列之单例模式/" itemprop="url">
+                  设计模式系列之单例模式
                 </a>
               
             
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T18:55:05+08:00">
-                2017-08-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T11:43:14+08:00">
+                2017-08-30
               </time>
             
 
@@ -375,7 +375,7 @@
 
           
           
-             <span id="/2017/08/29/a-test/" class="leancloud_visitors" data-flag-title="a test">
+             <span id="/2017/08/30/设计模式系列之单例模式/" class="leancloud_visitors" data-flag-title="设计模式系列之单例模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -393,7 +393,7 @@
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">字数统计:</span>
-           <span class="post-count">2(字)</span>
+           <span class="post-count">768(字)</span>
            
          </span>
       
@@ -403,7 +403,7 @@
              <i class="fa fa-calendar-o"></i>
            </span>
            <span class="post-meta-item-text">阅读时长:</span>
-           <span class="post-count">1(分)</span>
+           <span class="post-count">3(分)</span>
            
          </span>
 
@@ -426,12 +426,19 @@
       
         
           
-           哈哈
+          为什么使用单例模式？
+某些类创建比较繁琐耗时，频繁创建增加系统开销
+省去了new操作符，降低了系统内存的使用频率，减轻GC压力
+某些情况下要求该类有且仅有一个实例对象在当前JVM中 ，如资源管理相关  线程池 日志对象
 
-          
+特点
+单例类只能有一个实例。
+单例类必须自己创建自己的唯一实例。
+单例类必须给
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/29/a-test/#more" rel="contents">
+            <a class="btn" href="/2017/08/30/设计模式系列之单例模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -708,6 +715,28 @@ JDK的动态代理，就是在程序运行的过程中，根据被代理的接�
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ittech/" itemprop="url" rel="index">
+                    <span itemprop="name">ittech</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -867,6 +896,28 @@ JDK的动态代理，就是在程序运行的过程中，根据被代理的接�
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ittech/" itemprop="url" rel="index">
+                    <span itemprop="name">ittech</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -2019,7 +2070,7 @@ $ git init
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
