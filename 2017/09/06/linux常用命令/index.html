@@ -1,0 +1,1113 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Linux命令行编辑快捷键： history 显示命令历史列表 ↑(Ctrl+p) 显示上一条命令 ↓(Ctrl+n) 显示下一条命令 !num 执行命令历史列表的第num条命令 !! 执行上一条命令 !?string? 执行含有string字符串的最新命令 Ctrl+r 然后输入若干字符，开始向上搜索包含该字符的命令，继续按Ctrl+r，搜索上一条匹配的命令 Ctrl+s 与Ctrl+r类似,只">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux常用命令">
+<meta property="og:url" content="http://lilixin.top/2017/09/06/linux常用命令/index.html">
+<meta property="og:site_name" content="Jason&#39;s Blog">
+<meta property="og:description" content="Linux命令行编辑快捷键： history 显示命令历史列表 ↑(Ctrl+p) 显示上一条命令 ↓(Ctrl+n) 显示下一条命令 !num 执行命令历史列表的第num条命令 !! 执行上一条命令 !?string? 执行含有string字符串的最新命令 Ctrl+r 然后输入若干字符，开始向上搜索包含该字符的命令，继续按Ctrl+r，搜索上一条匹配的命令 Ctrl+s 与Ctrl+r类似,只">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-06T02:27:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux常用命令">
+<meta name="twitter:description" content="Linux命令行编辑快捷键： history 显示命令历史列表 ↑(Ctrl+p) 显示上一条命令 ↓(Ctrl+n) 显示下一条命令 !num 执行命令历史列表的第num条命令 !! 执行上一条命令 !?string? 执行含有string字符串的最新命令 Ctrl+r 然后输入若干字符，开始向上搜索包含该字符的命令，继续按Ctrl+r，搜索上一条匹配的命令 Ctrl+s 与Ctrl+r类似,只">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'JV80G8SMH3',
+      apiKey: '369ede30ca256aa706e6450f0e017e9a',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lilixin.top/2017/09/06/linux常用命令/"/>
+
+
+
+
+
+  <title> linux常用命令 | Jason's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jason's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Record My Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ittech">
+          <a href="/categories/ittech" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lilixin.top/2017/09/06/linux常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jason's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                linux常用命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T10:27:05+08:00">
+                2017-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/06/linux常用命令/" class="leancloud_visitors" data-flag-title="linux常用命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+         <span class="post-time">
+       &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">字数统计:</span>
+           <span class="post-count">1,835(字)</span>
+           
+         </span>
+      
+      <span class="post-time">
+       &nbsp; | &nbsp;
+           <span class="post-meta-item-icon">
+             <i class="fa fa-calendar-o"></i>
+           </span>
+           <span class="post-meta-item-text">阅读时长:</span>
+           <span class="post-count">7(分)</span>
+           
+         </span>
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Linux命令行编辑快捷键：</p>
+<p>history 显示命令历史列表</p>
+<p>↑(Ctrl+p) 显示上一条命令</p>
+<p>↓(Ctrl+n) 显示下一条命令</p>
+<p>!num 执行命令历史列表的第num条命令</p>
+<p>!! 执行上一条命令</p>
+<p>!?string? 执行含有string字符串的最新命令</p>
+<p>Ctrl+r 然后输入若干字符，开始向上搜索包含该字符的命令，继续按Ctrl+r，搜索上一条匹配的命令</p>
+<p>Ctrl+s 与Ctrl+r类似,只是正向检索</p>
+<p>Alt+&lt; 历史列表第一项</p>
+<p>Alt+&gt; 历史列表最后一项</p>
+<p>Ctrl+f 光标向前移动一个字符,相当与-&gt;</p>
+<p>Ctrl+b 光标向后移动一个字符,相当与&lt;-</p>
+<p>Alt+f 光标向前移动一个单词</p>
+<p>Alt+b 光标向后移动一个单词</p>
+<p>ls !$ 执行命令ls，并以上一条命令的参数为其参数</p>
+<p>Ctrl+a 移动到当前行的开头</p>
+<p>Ctrl+e 移动到当前行的结尾</p>
+<p>Esc+b 移动到当前单词的开头</p>
+<p>Esc+f 移动到当前单词的结尾</p>
+<p>Ctrl+l 清屏</p>
+<p>Ctrl+u 剪切命令行中光标所在处之前的所有字符（不包括自身）</p>
+<p>Ctrl+k 剪切命令行中光标所在处之后的所有字符（包括自身）</p>
+<p>Ctrl+d 删除光标所在处字符</p>
+<p>Ctrl+h 删除光标所在处前一个字符</p>
+<p>Ctrl+y 粘贴刚才所删除的字符</p>
+<p>Ctrl+w 剪切光标所在处之前的一个词（以空格、标点等为分隔符）</p>
+<p>Alt+d 剪切光标之后的词</p>
+<p>Esc+w 删除光标所在处之前的字符至其单词尾（以空格、标点等为分隔符）</p>
+<p>Ctrl+t 颠倒光标所在处及其之前的字符位置，并将光标移动到下一个字符</p>
+<p>Alt+t 交换当前与以前单词的位置</p>
+<p>Alt+u 把当前词转化为大写</p>
+<p>Alt+l 把当前词转化为小写</p>
+<p>Alt+c 把当前词汇变成首字符大写</p>
+<p>Ctrl+v 插入特殊字符,如Ctrl+v+Tab加入Tab字符键</p>
+<p>Esc+t 颠倒光标所在处及其相邻单词的位置</p>
+<p>Ctrl+c 删除整行</p>
+<p>Ctrl+(x u) 按住Ctrl的同时再先后按x和u，撤销刚才的操作</p>
+<p>Ctrl+s 挂起当前shell</p>
+<p>Ctrl+q 重新启用挂起的shell</p>
+<p>[Ctrl] + [Alt] + [Backspace] = 杀死你当前的 X 会话。杀死图形化桌面会话，把你返回到登录屏幕。如果正常退出步骤不起作用，你可以使用这种方法。</p>
+<p>[Ctrl] + [Alt] + [Delete] = 关机和重新引导 Red Hat Linux。关闭你当前的会话然后重新引导 OS。只有在正常关机步骤不起作用时才使用这种方法。</p>
+<p>[Ctrl] + [Alt] + [Fn] = 切换屏幕。 [Ctrl] + [Alt] + 功能键之一会显示一个新屏幕。根据默认设置，从 [F1] 到 [F6] 是 shell 提示屏幕， [F7] 是图形化屏幕。</p>
+<p>[Alt] + [Tab] = 在图形化桌面环境中切换任务。如果你同时打开了不止一个应用程序，你可以使用 [Alt] + [Tab] 来在打开的任务和应用程序间切换。</p>
+<p>[Ctrl] + [a] = 把光标移到行首。它在多数文本编辑器和 Mozilla 的 URL 字段内可以使用。</p>
+<p>[Ctrl] + [d] = 从 shell 提示中注销（并关闭）。使用该快捷键，你就不必键入 exit 或 logout 。</p>
+<p>[Ctrl] + [e] = 把光标移到行尾。它在多数文本编辑器和 Mozilla 的 URL 字段内都可使用。</p>
+<p>[Ctrl] + [l] = 清除终端。该快捷操作与在命令行键入 clear 作用相同。</p>
+<p>[Ctrl] + = 清除当前行。如果你在终端下工作，使用这一快捷操作可以清除从光标处到行首的字符。</p>
+<p>[鼠标中间键] = 粘贴突出显示的文本。使用鼠标左键来突出显示文本。把光标指向你想粘贴文本的地方。点击鼠标中间键来粘贴它。在两键鼠标系统中，如果你把鼠标配置成模拟第三键，你可以同时点击鼠标的左右两键来执行粘贴。</p>
+<p>[Tab] =命令行自动补全。使用 shell 提示时可使用这一命令。键入命令或文件名的前几个字符，然后按 [Tab] 键，它会自动补全命令或显示匹配你键入字符的所有命令。</p>
+<p>[向上] 和 [向下] 箭头 = 显示命令历史。当你使用 shell 提示时，按 [向上] 或 [向下] 箭头来前后查看你在当前目录下键入的命令历史。当你看到你想使用的命令时，按 [Enter] 键。</p>
+<p>clear = 清除 shell 提示屏幕。在命令行下键入它会清除所有这个 shell 提示屏幕中显示的数据。</p>
+<p>exit = 注销。在 shell 提示中键入它会注销当前的用户或根用户帐号。</p>
+<p>history = 显示命令历史。在 shell 提示中键入它来显示你所键入的被编号的前 1000 个命令。要显示较短的命令历史，键入 history f之后，空一格，在键入一个数字。例如： history 20 。</p>
+<p>reset = 刷新 shell 提示屏幕。如果字符不清晰或乱码的话，在 shell 提示下键入这个命令会刷新屏幕。</p>
+<h1 id="Ctrl-U-擦除一行光标前面的部分。"><a href="#Ctrl-U-擦除一行光标前面的部分。" class="headerlink" title="Ctrl-U: 擦除一行光标前面的部分。"></a>Ctrl-U: 擦除一行光标前面的部分。</h1><h1 id="Ctrl-H-擦除光标前面的一个字符。"><a href="#Ctrl-H-擦除光标前面的一个字符。" class="headerlink" title="Ctrl-H: 擦除光标前面的一个字符。"></a>Ctrl-H: 擦除光标前面的一个字符。</h1><h1 id="Ctrl-D-终止输入。-退出-shell，如果您正在使用-shell-的话-。"><a href="#Ctrl-D-终止输入。-退出-shell，如果您正在使用-shell-的话-。" class="headerlink" title="Ctrl-D: 终止输入。(退出 shell，如果您正在使用 shell 的话)。"></a>Ctrl-D: 终止输入。(退出 shell，如果您正在使用 shell 的话)。</h1><h1 id="Ctrl-C-终止当前正在运行的程序。"><a href="#Ctrl-C-终止当前正在运行的程序。" class="headerlink" title="Ctrl-C: 终止当前正在运行的程序。"></a>Ctrl-C: 终止当前正在运行的程序。</h1><h1 id="Ctrl-Z-暂停程序。"><a href="#Ctrl-Z-暂停程序。" class="headerlink" title="Ctrl-Z: 暂停程序。"></a>Ctrl-Z: 暂停程序。</h1><p>&amp;’’)</p>
+<h1 id="Ctrl-S-停止向屏幕输出。"><a href="#Ctrl-S-停止向屏幕输出。" class="headerlink" title="Ctrl-S: 停止向屏幕输出。"></a>Ctrl-S: 停止向屏幕输出。</h1><h1 id="Ctrl-Q-重新激活向屏幕输出。"><a href="#Ctrl-Q-重新激活向屏幕输出。" class="headerlink" title="Ctrl-Q: 重新激活向屏幕输出。"></a>Ctrl-Q: 重新激活向屏幕输出。</h1><p>默认的 shell，`bash’， 有历史编辑和 tab 补齐功能。</p>
+<h1 id="up-arrow-开始历史命令搜索。"><a href="#up-arrow-开始历史命令搜索。" class="headerlink" title="up-arrow: 开始历史命令搜索。"></a>up-arrow: 开始历史命令搜索。</h1><h1 id="Ctrl-R-开始增量历史命令搜索，可以按照关键字查查自己用过哪些命令。"><a href="#Ctrl-R-开始增量历史命令搜索，可以按照关键字查查自己用过哪些命令。" class="headerlink" title="Ctrl-R: 开始增量历史命令搜索，可以按照关键字查查自己用过哪些命令。"></a>Ctrl-R: 开始增量历史命令搜索，可以按照关键字查查自己用过哪些命令。</h1><h1 id="TAB-完整的把文件名输入到命令行。"><a href="#TAB-完整的把文件名输入到命令行。" class="headerlink" title="TAB: 完整的把文件名输入到命令行。"></a>TAB: 完整的把文件名输入到命令行。</h1><h1 id="Ctrl-V-TAB-输入-TAB-而不是扩展命令行。"><a href="#Ctrl-V-TAB-输入-TAB-而不是扩展命令行。" class="headerlink" title="Ctrl-V TAB: 输入 TAB 而不是扩展命令行。"></a>Ctrl-V TAB: 输入 TAB 而不是扩展命令行。</h1><h1 id="Ctrl-P-上一条命令"><a href="#Ctrl-P-上一条命令" class="headerlink" title="Ctrl + P - 上一条命令"></a>Ctrl + P - 上一条命令</h1><h1 id="Ctrl-N-下一条命令"><a href="#Ctrl-N-下一条命令" class="headerlink" title="Ctrl + N - 下一条命令"></a>Ctrl + N - 下一条命令</h1><h1 id="Ctrl-U-擦除一行光标前面的部分。-1"><a href="#Ctrl-U-擦除一行光标前面的部分。-1" class="headerlink" title="Ctrl-U: 擦除一行光标前面的部分。"></a>Ctrl-U: 擦除一行光标前面的部分。</h1><h1 id="Ctrl-Y-粘贴前一Ctrl-U类命令删除的字符-，是粘贴不是撤销啊！"><a href="#Ctrl-Y-粘贴前一Ctrl-U类命令删除的字符-，是粘贴不是撤销啊！" class="headerlink" title="Ctrl + Y - 粘贴前一Ctrl+U类命令删除的字符 ，是粘贴不是撤销啊！"></a>Ctrl + Y - 粘贴前一Ctrl+U类命令删除的字符 ，是粘贴不是撤销啊！</h1><p>下面的应用可能稍稍高级一点点</p>
+<h1 id="上一条命令"><a href="#上一条命令" class="headerlink" title="!! - 上一条命令"></a>!! - 上一条命令</h1><h1 id="n-倒数第N条历史命令"><a href="#n-倒数第N条历史命令" class="headerlink" title="!-n - 倒数第N条历史命令"></a>!-n - 倒数第N条历史命令</h1><h1 id="n-p-打印上一条命令（不执行）"><a href="#n-p-打印上一条命令（不执行）" class="headerlink" title="!-n:p - 打印上一条命令（不执行）"></a>!-n:p - 打印上一条命令（不执行）</h1><h1 id="string？-最新一条含有“string”的命令"><a href="#string？-最新一条含有“string”的命令" class="headerlink" title="!?string？- 最新一条含有“string”的命令"></a>!?string？- 最新一条含有“string”的命令</h1><h1 id="n-gs-str1-str2-将倒数第N条命令的str1替换为str2，并执行（若不加g-则仅替换第一个）"><a href="#n-gs-str1-str2-将倒数第N条命令的str1替换为str2，并执行（若不加g-则仅替换第一个）" class="headerlink" title="!-n:gs/str1/str2/ - 将倒数第N条命令的str1替换为str2，并执行（若不加g,则仅替换第一个）"></a>!-n:gs/str1/str2/ - 将倒数第N条命令的str1替换为str2，并执行（若不加g,则仅替换第一个）</h1><p>其他一些有用的Linux命令行按键组合。</p>
+<p>Ctrl-Alt-Del:挂起或者重新启动系统，这三个Linux命令行按键在Linux下可以轻松地修改成关机的操作，这对于单用户的朋友还是很方便的</p>
+<h1 id="Ctrl-l-清屏"><a href="#Ctrl-l-清屏" class="headerlink" title="Ctrl + l - 清屏"></a>Ctrl + l - 清屏</h1><h1 id="Ctrl-A-光标移到行首"><a href="#Ctrl-A-光标移到行首" class="headerlink" title="Ctrl + A - 光标移到行首"></a>Ctrl + A - 光标移到行首</h1><h1 id="Ctrl-E-光标移到行尾"><a href="#Ctrl-E-光标移到行尾" class="headerlink" title="Ctrl + E - 光标移到行尾"></a>Ctrl + E - 光标移到行尾</h1><h1 id="Ctrl-W-清除光标之前一个单词"><a href="#Ctrl-W-清除光标之前一个单词" class="headerlink" title="Ctrl + W - 清除光标之前一个单词"></a>Ctrl + W - 清除光标之前一个单词</h1><h1 id="Ctrl-K-清除光标到行尾的字符"><a href="#Ctrl-K-清除光标到行尾的字符" class="headerlink" title="Ctrl + K - 清除光标到行尾的字符"></a>Ctrl + K - 清除光标到行尾的字符</h1><h1 id="Ctrl-T-交换光标前两个字符"><a href="#Ctrl-T-交换光标前两个字符" class="headerlink" title="Ctrl + T - 交换光标前两个字符"></a>Ctrl + T - 交换光标前两个字符</h1><h1 id="Ctrl-V-输入控制字符-如Ctrl-v-会输入-M"><a href="#Ctrl-V-输入控制字符-如Ctrl-v-会输入-M" class="headerlink" title="Ctrl + V - 输入控制字符 如Ctrl+v ,会输入^M"></a>Ctrl + V - 输入控制字符 如Ctrl+v ,会输入^M</h1><h1 id="Ctrl-F-光标后移一个字符"><a href="#Ctrl-F-光标后移一个字符" class="headerlink" title="Ctrl + F - 光标后移一个字符"></a>Ctrl + F - 光标后移一个字符</h1><h1 id="Ctrl-B-光标前移一个字符"><a href="#Ctrl-B-光标前移一个字符" class="headerlink" title="Ctrl + B - 光标前移一个字符"></a>Ctrl + B - 光标前移一个字符</h1><h1 id="Ctrl-H-删除光标前一个字符"><a href="#Ctrl-H-删除光标前一个字符" class="headerlink" title="Ctrl + H - 删除光标前一个字符"></a>Ctrl + H - 删除光标前一个字符</h1><h1 id="N-F-光标后移N个单词，N为1时可省略"><a href="#N-F-光标后移N个单词，N为1时可省略" class="headerlink" title="N++F - 光标后移N个单词，N为1时可省略"></a>N++F - 光标后移N个单词，N为1时可省略</h1><h1 id="N-B-光标前移N个单词，N为1时可省略"><a href="#N-B-光标前移N个单词，N为1时可省略" class="headerlink" title="N++B - 光标前移N个单词，N为1时可省略"></a>N++B - 光标前移N个单词，N为1时可省略</h1><h1 id="Left-click-and-drag-mouse-选择并且拷贝到剪贴板。"><a href="#Left-click-and-drag-mouse-选择并且拷贝到剪贴板。" class="headerlink" title="Left-click-and-drag mouse: 选择并且拷贝到剪贴板。"></a>Left-click-and-drag mouse: 选择并且拷贝到剪贴板。</h1><h1 id="Click-middle-mouse-button-使用剪贴板的内容粘贴。"><a href="#Click-middle-mouse-button-使用剪贴板的内容粘贴。" class="headerlink" title="Click middle mouse button: 使用剪贴板的内容粘贴。"></a>Click middle mouse button: 使用剪贴板的内容粘贴。</h1><h1 id="Meta-key-Emacs-terminology-传统的是使用-Left-Alt-key"><a href="#Meta-key-Emacs-terminology-传统的是使用-Left-Alt-key" class="headerlink" title="Meta-key (Emacs terminology) 传统的是使用 Left-Alt-key"></a>Meta-key (Emacs terminology) 传统的是使用 Left-Alt-key</h1>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>关注我的微信，共同分享与讨论！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>关注</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jason Li WeChat Pay"/>
+          <p>关注我</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/06/Sublime-Text-打造全栈开发环境/" rel="next" title="Sublime Text打造全栈开发环境">
+                <i class="fa fa-chevron-left"></i> Sublime Text打造全栈开发环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDEzMi82Njg3"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Li" />
+          <p class="site-author-name" itemprop="name">Jason Li</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lilixin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-U-擦除一行光标前面的部分。"><span class="nav-number">1.</span> <span class="nav-text">Ctrl-U: 擦除一行光标前面的部分。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-H-擦除光标前面的一个字符。"><span class="nav-number">2.</span> <span class="nav-text">Ctrl-H: 擦除光标前面的一个字符。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-D-终止输入。-退出-shell，如果您正在使用-shell-的话-。"><span class="nav-number">3.</span> <span class="nav-text">Ctrl-D: 终止输入。(退出 shell，如果您正在使用 shell 的话)。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-C-终止当前正在运行的程序。"><span class="nav-number">4.</span> <span class="nav-text">Ctrl-C: 终止当前正在运行的程序。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-Z-暂停程序。"><span class="nav-number">5.</span> <span class="nav-text">Ctrl-Z: 暂停程序。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-S-停止向屏幕输出。"><span class="nav-number">6.</span> <span class="nav-text">Ctrl-S: 停止向屏幕输出。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-Q-重新激活向屏幕输出。"><span class="nav-number">7.</span> <span class="nav-text">Ctrl-Q: 重新激活向屏幕输出。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#up-arrow-开始历史命令搜索。"><span class="nav-number">8.</span> <span class="nav-text">up-arrow: 开始历史命令搜索。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-R-开始增量历史命令搜索，可以按照关键字查查自己用过哪些命令。"><span class="nav-number">9.</span> <span class="nav-text">Ctrl-R: 开始增量历史命令搜索，可以按照关键字查查自己用过哪些命令。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TAB-完整的把文件名输入到命令行。"><span class="nav-number">10.</span> <span class="nav-text">TAB: 完整的把文件名输入到命令行。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-V-TAB-输入-TAB-而不是扩展命令行。"><span class="nav-number">11.</span> <span class="nav-text">Ctrl-V TAB: 输入 TAB 而不是扩展命令行。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-P-上一条命令"><span class="nav-number">12.</span> <span class="nav-text">Ctrl + P - 上一条命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-N-下一条命令"><span class="nav-number">13.</span> <span class="nav-text">Ctrl + N - 下一条命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-U-擦除一行光标前面的部分。-1"><span class="nav-number">14.</span> <span class="nav-text">Ctrl-U: 擦除一行光标前面的部分。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-Y-粘贴前一Ctrl-U类命令删除的字符-，是粘贴不是撤销啊！"><span class="nav-number">15.</span> <span class="nav-text">Ctrl + Y - 粘贴前一Ctrl+U类命令删除的字符 ，是粘贴不是撤销啊！</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上一条命令"><span class="nav-number">16.</span> <span class="nav-text">!! - 上一条命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#n-倒数第N条历史命令"><span class="nav-number">17.</span> <span class="nav-text">!-n - 倒数第N条历史命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#n-p-打印上一条命令（不执行）"><span class="nav-number">18.</span> <span class="nav-text">!-n:p - 打印上一条命令（不执行）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#string？-最新一条含有“string”的命令"><span class="nav-number">19.</span> <span class="nav-text">!?string？- 最新一条含有“string”的命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#n-gs-str1-str2-将倒数第N条命令的str1替换为str2，并执行（若不加g-则仅替换第一个）"><span class="nav-number">20.</span> <span class="nav-text">!-n:gs/str1/str2/ - 将倒数第N条命令的str1替换为str2，并执行（若不加g,则仅替换第一个）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-l-清屏"><span class="nav-number">21.</span> <span class="nav-text">Ctrl + l - 清屏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-A-光标移到行首"><span class="nav-number">22.</span> <span class="nav-text">Ctrl + A - 光标移到行首</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-E-光标移到行尾"><span class="nav-number">23.</span> <span class="nav-text">Ctrl + E - 光标移到行尾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-W-清除光标之前一个单词"><span class="nav-number">24.</span> <span class="nav-text">Ctrl + W - 清除光标之前一个单词</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-K-清除光标到行尾的字符"><span class="nav-number">25.</span> <span class="nav-text">Ctrl + K - 清除光标到行尾的字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-T-交换光标前两个字符"><span class="nav-number">26.</span> <span class="nav-text">Ctrl + T - 交换光标前两个字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-V-输入控制字符-如Ctrl-v-会输入-M"><span class="nav-number">27.</span> <span class="nav-text">Ctrl + V - 输入控制字符 如Ctrl+v ,会输入^M</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-F-光标后移一个字符"><span class="nav-number">28.</span> <span class="nav-text">Ctrl + F - 光标后移一个字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-B-光标前移一个字符"><span class="nav-number">29.</span> <span class="nav-text">Ctrl + B - 光标前移一个字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ctrl-H-删除光标前一个字符"><span class="nav-number">30.</span> <span class="nav-text">Ctrl + H - 删除光标前一个字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#N-F-光标后移N个单词，N为1时可省略"><span class="nav-number">31.</span> <span class="nav-text">N++F - 光标后移N个单词，N为1时可省略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#N-B-光标前移N个单词，N为1时可省略"><span class="nav-number">32.</span> <span class="nav-text">N++B - 光标前移N个单词，N为1时可省略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Left-click-and-drag-mouse-选择并且拷贝到剪贴板。"><span class="nav-number">33.</span> <span class="nav-text">Left-click-and-drag mouse: 选择并且拷贝到剪贴板。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Click-middle-mouse-button-使用剪贴板的内容粘贴。"><span class="nav-number">34.</span> <span class="nav-text">Click middle mouse button: 使用剪贴板的内容粘贴。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Meta-key-Emacs-terminology-传统的是使用-Left-Alt-key"><span class="nav-number">35.</span> <span class="nav-text">Meta-key (Emacs terminology) 传统的是使用 Left-Alt-key</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Li</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dD0g23R5hldCatu6KgP76TD8-gzGzoHsz", "BvAChlBunEJ9918MkKRBw1H1");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
